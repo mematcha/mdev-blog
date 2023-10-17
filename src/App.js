@@ -1,13 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import logo from "./logo.svg";
 import "./App.scss";
-import MainHeader from "./components/mainHeader";
-import Footer from "./components/footer";
-import MainSearch from "./components/mainSearch";
-import BlogCardNew from "./components/blogCard2";
 import { DeviceContext, DeviceProvider } from "./DeviceContext";
-import MLCard from "./components/mailingListCard";
 import HomePage from "./pages/homePage";
 import BlogPage from "./pages/blogPage";
 import UserPage from "./pages/userPage";
