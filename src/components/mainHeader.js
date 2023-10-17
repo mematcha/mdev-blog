@@ -1,6 +1,6 @@
 import "./mainHeader.scss";
 import LogoTransparent from "../assets/Asset 6.svg";
-import LogoBlack from "../assets/Asset 7.svg";
+import LogoBlack from "../assets/logo_v2.svg";
 import UserLogoWhite from "../assets/userLogoDefault.svg";
 import { DeviceContext } from "../DeviceContext";
 import { useContext } from "react";
@@ -18,7 +18,7 @@ function MainHeader() {
         flex items-center justify-between`}
     >
       <img src={LogoBlack} alt="logo" className="w-8 h-8"></img>
-      <div className="flex flex-row text-[12px] items-center">
+      <div className="flex font-bold flex-row text-[12px] items-center">
         <span className="px-2">About Me</span>
         <span className="px-2">Other Projects</span>
         <span className="px-2">Portfolio</span>
