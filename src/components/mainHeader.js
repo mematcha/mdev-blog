@@ -18,7 +18,12 @@ function MainHeader() {
         flex items-center justify-between`}
     >
       <img src={LogoBlack} alt="logo" className="w-8 h-8"></img>
-      <img src={UserLogoWhite} alt="logo" className="w-6 h-6"></img>
+      <div className="flex flex-row text-[12px] items-center">
+        <span className="px-2">About Me</span>
+        <span className="px-2">Other Projects</span>
+        <span className="px-2">Portfolio</span>
+        <img src={UserLogoWhite} alt="logo" className="w-6 h-6 ml-2"></img>
+      </div>
     </div>
   );
 }

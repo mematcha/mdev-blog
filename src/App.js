@@ -7,6 +7,9 @@ import MainSearch from "./components/mainSearch";
 import BlogCardNew from "./components/blogCard2";
 import {DeviceContext, DeviceProvider} from "./DeviceContext";
 import MLCard from "./components/mailingListCard";
+import HomePage from "./pages/homePage";
+// import socialCard from './components/'
+
 function App() {
 
 
@@ -14,27 +17,12 @@ function App() {
     document.title = "Blog | mDev";
   }, []);
 
-
   const deviceType = useContext(DeviceContext);
 
   return (
     <div className="App">
       <DeviceProvider>
-        <div className="body-center fixed flex justify-center top-0 left-0 shadow bg-white z-10">
-          <MainHeader></MainHeader>
-        </div>
-        <div className={`body ${deviceType==="mobile"?"mx-[20%]":"mx-[10%]"}`}>
-          <MainSearch></MainSearch>
-          <div className="pb-[60px]">
-              <BlogCardNew ></BlogCardNew>
-              <BlogCardNew ></BlogCardNew>
-              <BlogCardNew ></BlogCardNew>
-              <BlogCardNew ></BlogCardNew>
-              <BlogCardNew ></BlogCardNew>
-              <BlogCardNew ></BlogCardNew>
-            </div>
-        </div>
-        <Footer></Footer>
+        <HomePage deviceType={deviceType}></HomePage>
       </DeviceProvider>
     </div>
   );
