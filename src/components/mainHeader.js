@@ -4,6 +4,7 @@ import LogoBlack from "../assets/logo_v2.svg";
 import UserLogoWhite from "../assets/userLogoDefault.svg";
 import { DeviceContext } from "../DeviceContext";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 //Header Method
 function MainHeader() {
@@ -17,7 +18,9 @@ function MainHeader() {
         bg-white
         flex items-center justify-between`}
     >
-      <img src={LogoBlack} alt="logo" className="w-8 h-8"></img>
+      <Link to="/">
+        <img src={LogoBlack} alt="logo" className="w-8 h-8"></img>
+      </Link>
       <div className="flex font-bold flex-row text-[12px] items-center">
         <span className="px-2">About Me</span>
         <span className="px-2">Other Projects</span>
