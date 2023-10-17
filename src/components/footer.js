@@ -2,8 +2,8 @@ import { DeviceContext } from "../DeviceContext";
 import { useContext } from "react";
 
 function Footer() {
+  
   const deviceContextVal = useContext(DeviceContext);
-  console.log(deviceContextVal);
 
   return (
     <div
@@ -11,7 +11,7 @@ function Footer() {
                       bottom-0 left-0 w-full 
                       bg-slate-950 shadow 
                       flex items-center justify-center px-12 py-6 ${
-                        deviceContextVal === "mobile" ? "text-[8px]" : "text-xs"
+                        deviceContextVal === "mobile" ? "text-[8px] hidden" : "text-xs"
                       }`}
     >
       <div className={`text-slate-500/75 flex justify-center ${

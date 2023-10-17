@@ -10,12 +10,11 @@ function BlogCardNew() {
       //Main Header Class
       <div className='text-3xl my-4 w-full h-auto 
                       flex flex-row items-start
-                      justify-center shadow
-                      rounded-12'>
+                      justify-center'>
             {/* Poster Image */}
             <img src={Poster1Img} 
                  alt="poster-image" 
-                 className={`w-24 h-24 opacity-50 rounded-[10px] items-start
+                 className={`max-w-32 max-h-32 w-24 h-24 opacity-50  items-start
                  ${deviceContextVal=='mobile'?'hidden':''}`}>
 
             </img>
