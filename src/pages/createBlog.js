@@ -1,6 +1,7 @@
 import AddContent from "../components/addContent";
 import AddParagraph from "../components/addParagraph";
 import MainHeader from "../components/mainHeader";
+import MarkDownComponent from "../components/markdownComponent";
 import { DeviceContext } from '../DeviceContext';
 import { useContext } from 'react';
 
@@ -19,8 +20,7 @@ function CreateBlog() {
           deviceContextVal === "mobile" ? "mx-[05%]" : "mx-[10%]"
         }`}        
       >
-        <AddParagraph></AddParagraph>
-        <AddContent></AddContent>
+        <MarkDownComponent></MarkDownComponent>
       </div>
     </>
   );
