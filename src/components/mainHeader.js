@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 //Header Method
 function MainHeader() {
   const deviceContextVal = useContext(DeviceContext);
-  console.log(deviceContextVal);
+
   return (
     //Main Header Class
     <div
