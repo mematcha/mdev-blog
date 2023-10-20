@@ -7,6 +7,9 @@ module.exports = {
     extend: {
       fontSize:{
         "14":"14px"
+      },
+      zIndex:{
+        "5":5
       }
     },
   },

@@ -30,37 +30,75 @@
     }
 
 }
+
 .md-result {
     a::after {
-        content: '\2197'; /* Unicode character for an arrow */
+        content: '\2197';
+        /* Unicode character for an arrow */
         margin-left: 0.2em;
         text-decoration: underline;
         color: blue;
     }
 
-    ul{
-        list-style: disc;
-    }
-
-    ol{
-        list-style: decimal;
-    }
-
     a:hover {
         color: blue;
     }
+
+    ul {
+        list-style: disc;
+    }
+
+    ol {
+        list-style: decimal;
+    }
+
+    p {
+        font-size: 1.25em;
+        margin: 16px 0px;
+    }
+
+    li {
+        font-size: 1.25em;
+    }
+
+    blockquote {
+        margin: 20px 0;
+        padding: 10px 20px;
+        border-left: 5px solid #ccc;
+        font-style: italic;
+        font-size: 1.2rem;
+        line-height: 1.5;
+    }
+
+    code {
+        font-family: Consolas, Monaco, monospace;
+        font-size: 14px;
+        padding: 5px 10px;
+        border-radius: 3px;
+        color:#fff;
+    }
+
+    pre {
+        background-color: #333;
+        padding:15px 30px;
+        border-radius: 12px;
+    }
+
     h1 {
-        font-size: 2em;
+        font-size: 3em;
+        font-weight: 800;
         /* Equivalent to 32px if base font size is 16px */
     }
 
     h2 {
-        font-size: 1.5em;
+        font-size: 2em;
+        font-weight: 800;
         /* Equivalent to 24px if base font size is 16px */
     }
 
     h3 {
         font-size: 1.17em;
+        font-weight: 800;
         /* Equivalent to 18.72px if base font size is 16px */
     }
 
@@ -78,4 +116,13 @@
         font-size: 0.67em;
         /* Equivalent to 10.72px if base font size is 16px */
     }
+
+    em {
+        font-size: 1.17em;
+    }
+
+    strong {
+        font-size: 1.17em;
+    }
+
 }

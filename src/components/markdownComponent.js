@@ -18,10 +18,6 @@ function MarkDownComponent({sendTextData,isEdit}) {
   useEffect(()=>{
     if(!isEdit){
       styleLinks();
-      // toggleUnicodeBidiForAllLists();
-    }
-    if(isEdit){
-
     }
   },[isEdit])
 
@@ -39,24 +35,7 @@ function MarkDownComponent({sendTextData,isEdit}) {
     const lines = (textarea.value.match(/\n/g) || []).length + 1;
     const finalHeight = originalHeight+20*(lines-1);
     setNewHeight(finalHeight);
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault(); // Prevent default behavior (creating a new line)
-      setText(text + '\n'); // Add a newline character to the text
-    }
-  };
-
-  const CustomLink = ({ children, ...props }) => (
-    <a target="_blank" rel="noopener noreferrer" {...props}>
-      {children}
-    </a>
-  );  
-  
-  const options = {
-    remarkPlugins: [remarkBreaks], // Add the plugin to the remarkPlugins option
-  };
+  }; 
 
   return (
     <>
@@ -65,7 +44,6 @@ function MarkDownComponent({sendTextData,isEdit}) {
             value={text}
             id="notearea"
             onChange={handleChange}
-            onKeyDown={handleKeyDown}
             className="md-note-space outline-none resize-none overflow-hidden"
             style={{height:newHeight}}>    
         </textarea>
@@ -74,7 +52,7 @@ function MarkDownComponent({sendTextData,isEdit}) {
         <div className="flex flex-col border-4 border-gray-200 p-4 px-8">
         <div 
             className="md-result outline-none resize-none">
-              <ReactMarkdown className="black-disc-bullet" children={text} options={options}></ReactMarkdown>
+              <ReactMarkdown className="black-disc-bullet" children={text}></ReactMarkdown>
         </div>
       </div>
       )}
