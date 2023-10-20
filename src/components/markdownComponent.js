@@ -1,125 +1,83 @@
 import React, { useState, useRef, useEffect } from "react";
 import NoteMenu from "./noteMenu";
-import MarkdownClip from "./markDownBit";
-
-function MarkDownComponent() {
+// import MarkdownClip from "./markDownBit";
+import ReactMarkdown from "react-markdown";
+import remarkBreaks from './remarkBreaks'; // Import the custom remark plugin
+import "./markdownBit.scss";
+function MarkDownComponent({sendTextData,isEdit}) {
   // const inputRef = useRef(null);
-  const [inputArray, setInputArray] = useState([{md:false,content:''}]);
-  const [focusedElement, setFocusedElement] = useState(null);
-  const [movement, setMovement] = useState("");
-  const [showMarkdown,setShowMarkdown]=useState(false);
-  // const [markdownContent, setMarkdownContent] = useState("");
-  // const handleChange = (e) => {
-  //   setMarkdownContent(e.target.value);
-  // };
-  console.log(inputArray);
+
+  const [text, setText] = useState('');
+  const [newHeight,setNewHeight] = useState(600);
+  const originalHeight = 600;
+  let unicodeBidiValue = 'isolate';
+  useEffect(()=>{
+    sendTextData(text);
+  },[text])
+
+  useEffect(()=>{
+    if(!isEdit){
+      styleLinks();
+      // toggleUnicodeBidiForAllLists();
+    }
+    if(isEdit){
+
+    }
+  },[isEdit])
+
+  const styleLinks = () => {
+    const links = document.querySelectorAll('.md-result a');
+
+      links.forEach(link => {
+        link.setAttribute('target', '_blank');
+      });
+  }
+
+  const handleChange = (e) => {
+    setText(e.target.value);
+    const textarea = document.getElementById('notearea');
+    const lines = (textarea.value.match(/\n/g) || []).length + 1;
+    const finalHeight = originalHeight+20*(lines-1);
+    setNewHeight(finalHeight);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); // Prevent default behavior (creating a new line)
+      setText(text + '\n'); // Add a newline character to the text
+    }
+  };
+
+  const CustomLink = ({ children, ...props }) => (
+    <a target="_blank" rel="noopener noreferrer" {...props}>
+      {children}
+    </a>
+  );  
   
-  useEffect(() => {
-    if (movement === "up") {
-      focusOnPreviousElement(focusedElement);
-    }
-    if (movement === "down") {
-      focusOnNextElement(focusedElement);
-    }
-  }, [inputArray]);
-
-  const focusOnNextElement = (focusedElement) => {
-    if (focusedElement instanceof HTMLDivElement) {
-      var nextDiv = focusedElement.nextSibling;
-      if (nextDiv instanceof HTMLDivElement) {
-        console.log("nextDiv", nextDiv);
-        nextDiv.focus();
-      }
-    }
-  };
-
-  const focusOnPreviousElement = (focusedElement) => {
-    if (focusedElement instanceof HTMLDivElement) {
-      var prevDiv = focusedElement.previousSibling;
-      if (prevDiv instanceof HTMLDivElement) {
-        console.log("prevDiv", prevDiv);
-        prevDiv.focus();
-      }
-    }
-  };
-
-  const handleKeyPress = (event) => {
-    setMovement("");
-    // console.log(event.key);
-    var array = [...inputArray];
-    const focusedElement = document.activeElement;
-
-    if (event.key === "a" && event.ctrlKey) {
-      console.log("Ctrl + A pressed"); // Replace with your action
-    }
-    if (event.key === "ArrowUp") {
-      focusOnPreviousElement(focusedElement);
-      return;
-    }
-    if (event.key === "ArrowDown") {
-      focusOnNextElement(focusedElement);
-      return;
-    }
-    if (event.key === "Enter") {
-      event.preventDefault();
-      var keyValue = Number(focusedElement.getAttribute("refer"));
-      array = [...inputArray];
-      array[keyValue-1].md=true;
-      array[keyValue-1].content=focusedElement.textContent;
-      array.splice(keyValue, 0, {md:false,content:''});
-      setInputArray(array);
-      setFocusedElement(focusedElement);
-      setMovement("down");
-    }
-    if (focusedElement && focusedElement.tagName === "DIV") {
-      // console.log("Currently focused div:", focusedElement);
-      // console.log(focusedElement.innerHTML);
-      if (
-        focusedElement.innerHTML === "" &&
-        event.key === "Backspace" &&
-        array.length > 1
-      ) {
-        array.pop();
-        setFocusedElement(focusedElement);
-        setInputArray(array);
-        setMovement("up");
-      }
-    }
-  };
-
-  const getParentDiv = (e) =>{
-    var target=e.target;
-    while (!(target instanceof HTMLDivElement)) {
-      target=target.parentElement;
-    }
-    return target;
-  };
-
-  const focusOnClick = (e)=>{
-    var targetDiv=getParentDiv(e);
-    var keyValue = Number(targetDiv.getAttribute("refermd"));
-    var array = [...inputArray];
-    array[keyValue-1].md=false;
-    setInputArray(array);
+  const options = {
+    remarkPlugins: [remarkBreaks], // Add the plugin to the remarkPlugins option
   };
 
   return (
     <>
-      <div className="flex flex-col">
-        <NoteMenu></NoteMenu>
-        <div className="md-note-space flex flex-col border-2 border-black p-4">
-          {inputArray.map((value, index) => (
-            <MarkdownClip 
-              key={index}
-              index={index}
-              onClick={focusOnClick} 
-              handleKeyPress={handleKeyPress}
-              content={value.content} 
-              showMarkdown={value.md}>
-            </MarkdownClip>
-          ))}
+      {isEdit && (<div className="flex flex-col border-4 border-gray-200 p-4">
+        <textarea 
+            value={text}
+            id="notearea"
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            className="md-note-space outline-none resize-none overflow-hidden"
+            style={{height:newHeight}}>    
+        </textarea>
+      </div>)}
+      {!isEdit && (
+        <div className="flex flex-col border-4 border-gray-200 p-4 px-8">
+        <div 
+            className="md-result outline-none resize-none">
+              <ReactMarkdown className="black-disc-bullet" children={text} options={options}></ReactMarkdown>
         </div>
       </div>
+      )}
     </>
   );
 }

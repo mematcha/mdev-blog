@@ -30,3 +30,52 @@
     }
 
 }
+.md-result {
+    a::after {
+        content: '\2197'; /* Unicode character for an arrow */
+        margin-left: 0.2em;
+        text-decoration: underline;
+        color: blue;
+    }
+
+    ul{
+        list-style: disc;
+    }
+
+    ol{
+        list-style: decimal;
+    }
+
+    a:hover {
+        color: blue;
+    }
+    h1 {
+        font-size: 2em;
+        /* Equivalent to 32px if base font size is 16px */
+    }
+
+    h2 {
+        font-size: 1.5em;
+        /* Equivalent to 24px if base font size is 16px */
+    }
+
+    h3 {
+        font-size: 1.17em;
+        /* Equivalent to 18.72px if base font size is 16px */
+    }
+
+    h4 {
+        font-size: 1em;
+        /* Equivalent to 16px if base font size is 16px */
+    }
+
+    h5 {
+        font-size: 0.83em;
+        /* Equivalent to 13.28px if base font size is 16px */
+    }
+
+    h6 {
+        font-size: 0.67em;
+        /* Equivalent to 10.72px if base font size is 16px */
+    }
+}
