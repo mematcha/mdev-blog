@@ -23,8 +23,8 @@ function HomePage() {
       >
         <MainSearch></MainSearch>
         <div className="pb-[60px] flex flex-row">
-          <MLCard></MLCard>
-          <div className="pb-[60px]">
+          {/* <MLCard></MLCard> */}
+          <div>
             <BlogCardNew></BlogCardNew>
             <BlogCardNew></BlogCardNew>
             <BlogCardNew></BlogCardNew>

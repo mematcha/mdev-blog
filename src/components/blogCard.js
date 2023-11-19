@@ -12,12 +12,12 @@ function BlogCardNew() {
                       flex flex-row items-start
                       justify-center'>
             {/* Poster Image */}
-            <img src={Poster1Img} 
+            {/* <img src={Poster1Img} 
                  alt="poster-image" 
                  className={`max-w-32 max-h-32 w-24 h-24 opacity-50  items-start
                  ${deviceContextVal=='mobile'?'hidden':''}`}>
 
-            </img>
+            </img> */}
             {/* Poster Text */}
             <div className='mx-4 text-[10px] flex flex-col justify-center w-full'> 
                 <div className='text-[20px] flex items-center my-2 font-bold'>Animating Multi-Page Navigations with Browser View Transitions and Astro</div>
