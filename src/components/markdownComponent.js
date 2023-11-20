@@ -52,7 +52,7 @@ function MarkDownComponent({sendTextData,isEdit}) {
       <div className="flex flex-col border-4 border-gray-200 p-4 px-8" style={{fontFamily:"Verdana"}}>
         <div 
             className="md-result outline-none resize-none">
-              <ReactMarkdown className="black-disc-bullet" children={text}></ReactMarkdown>
+              <ReactMarkdown className="black-disc-bullet text-justify" children={text}></ReactMarkdown>
         </div>
       </div>
       )}
