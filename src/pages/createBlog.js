@@ -22,22 +22,6 @@ function CreateBlog() {
     setTextData(data);
   };
 
-  const openFilePicker = (e) => {
-    document.getElementById("fileInput").click();
-  };
-
-  const acceptFile = (e) => {
-    const file = e.target.files[0];
-
-    if (file && file.type.startsWith("image/")) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImgSource(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -116,13 +100,6 @@ function CreateBlog() {
           </div>
           <div className="relative top-12 z-0">
             <div className="flex justify-around align-center mt-[40px] bg-slate-100">
-              <input
-                type="file"
-                accept="image/*"
-                id="fileInput"
-                onChange={acceptFile}
-                className="hidden"
-              ></input>
               {imgSource == null ? (
                 <></>
               ) : (
@@ -180,7 +157,6 @@ function CreateBlog() {
         <Modal
           isOpen={isModalOpen}
           onClose={closeModal}
-          openFile={openFilePicker}
           setImageSource={setImgSource}
         />
       </div>
