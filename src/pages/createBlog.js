@@ -22,22 +22,6 @@ function CreateBlog() {
     setTextData(data);
   };
 
-  const openFilePicker = (e) => {
-    document.getElementById("fileInput").click();
-  };
-
-  const acceptFile = (e) => {
-    const file = e.target.files[0];
-
-    if (file && file.type.startsWith("image/")) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImgSource(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -57,6 +41,12 @@ function CreateBlog() {
     var array = [...blogTagsArr];
     blogTagsArr[index].text=e.target.value;
     console.log(e.target.value,index);
+    divRef.current=e.target;
+    if (divRef.current && !divRef.current.contains(e.target)) {
+      // Click occurred outside the div
+      // Do something here
+      console.log("Clicked outside the div");
+    }
   };
 
   const handleKeyDown = (index,e) => {
@@ -71,8 +61,9 @@ function CreateBlog() {
     }
   };
 
-  const inputStyle = {
-    width: `${inputValue.length < 9 ? 9 * 7 : inputValue.length * 7}px`, // Adjust the multiplier to control the width
+  const inputStyle =(inputValue)=> {
+    
+    return {width: `${inputValue.length < 16 ? 16 * 7 : inputValue.length * 7}px`} // Adjust the multiplier to control the width
   };
 
   return (
@@ -116,13 +107,6 @@ function CreateBlog() {
           </div>
           <div className="relative top-12 z-0">
             <div className="flex justify-around align-center mt-[40px] bg-slate-100">
-              <input
-                type="file"
-                accept="image/*"
-                id="fileInput"
-                onChange={acceptFile}
-                className="hidden"
-              ></input>
               {imgSource == null ? (
                 <></>
               ) : (
@@ -139,9 +123,10 @@ function CreateBlog() {
                     #{""}
                     <input
                       value={blogTag.text}
+                      state={""}
                       onChange={(e)=>{handleChange(index,e);}}
                       onKeyDown={(e)=>{handleKeyDown(index,e)}}
-                      style={inputStyle}
+                      style={inputStyle(blogTag.text)}
                       placeholder="Type something"
                       className="outline-none bg-transparent fit-content"
                       type="text"
@@ -180,7 +165,6 @@ function CreateBlog() {
         <Modal
           isOpen={isModalOpen}
           onClose={closeModal}
-          openFile={openFilePicker}
           setImageSource={setImgSource}
         />
       </div>
