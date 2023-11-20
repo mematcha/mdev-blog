@@ -4,8 +4,7 @@ import searchLogo from '../assets/searchLogo.svg';
 function MainSearch() {
     return (
       //Main Header Class
-      <div className='text-3xl h-12 my-12 mb-16 min-w-[200px]
-                      rounded-lg
+      <div className='text-3xl h-12 my-12 mb-16
                       bg-slate-100 shadow
                       flex items-center justify-between'>
           {/* Logo */}

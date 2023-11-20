@@ -5,11 +5,15 @@ import BlogCardNew from "../components/blogCard";
 import MLCard from "../components/mailingListCard";
 import { DeviceContext } from '../DeviceContext';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
 
   const deviceContextVal= useContext(DeviceContext);
-
+  const navigate = useNavigate();
+  const handleOnClick=()=>{
+    navigate('/create-blog');
+  };
 
   return (
     <>
@@ -18,19 +22,19 @@ function HomePage() {
       </div>
       <div
         className={`body ${
-          deviceContextVal === "mobile" ? "mx-[05%]" : "mx-[10%]"
+          deviceContextVal === "mobile" ? "mx-[05%]" : "mx-[15%]"
         }`}
       >
         <MainSearch></MainSearch>
         <div className="pb-[60px] flex flex-row">
           {/* <MLCard></MLCard> */}
           <div>
-            <BlogCardNew></BlogCardNew>
-            <BlogCardNew></BlogCardNew>
-            <BlogCardNew></BlogCardNew>
-            <BlogCardNew></BlogCardNew>
-            <BlogCardNew></BlogCardNew>
-            <BlogCardNew></BlogCardNew>
+            <BlogCardNew handleOnClick={handleOnClick}></BlogCardNew>
+            <BlogCardNew handleOnClick={handleOnClick}></BlogCardNew>
+            <BlogCardNew handleOnClick={handleOnClick}></BlogCardNew>
+            <BlogCardNew handleOnClick={handleOnClick}></BlogCardNew>
+            <BlogCardNew handleOnClick={handleOnClick}></BlogCardNew>
+            <BlogCardNew handleOnClick={handleOnClick}></BlogCardNew>
           </div>
         </div>
       </div>

@@ -15,6 +15,9 @@ input{
 body{
   font-family: $font-verdana!important;
 }
+.cursor-pointer {
+  cursor: pointer;
+}
 .body {
     // height:2000px;
     position: relative;
