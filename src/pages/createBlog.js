@@ -41,6 +41,12 @@ function CreateBlog() {
     var array = [...blogTagsArr];
     blogTagsArr[index].text=e.target.value;
     console.log(e.target.value,index);
+    divRef.current=e.target;
+    if (divRef.current && !divRef.current.contains(e.target)) {
+      // Click occurred outside the div
+      // Do something here
+      console.log("Clicked outside the div");
+    }
   };
 
   const handleKeyDown = (index,e) => {
@@ -55,8 +61,9 @@ function CreateBlog() {
     }
   };
 
-  const inputStyle = {
-    width: `${inputValue.length < 9 ? 9 * 7 : inputValue.length * 7}px`, // Adjust the multiplier to control the width
+  const inputStyle =(inputValue)=> {
+    
+    return {width: `${inputValue.length < 16 ? 16 * 7 : inputValue.length * 7}px`} // Adjust the multiplier to control the width
   };
 
   return (
@@ -116,9 +123,10 @@ function CreateBlog() {
                     #{""}
                     <input
                       value={blogTag.text}
+                      state={""}
                       onChange={(e)=>{handleChange(index,e);}}
                       onKeyDown={(e)=>{handleKeyDown(index,e)}}
-                      style={inputStyle}
+                      style={inputStyle(blogTag.text)}
                       placeholder="Type something"
                       className="outline-none bg-transparent fit-content"
                       type="text"
