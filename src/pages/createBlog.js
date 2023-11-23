@@ -30,18 +30,32 @@ function CreateBlog() {
     setIsModalOpen(false);
   };
 
+  function getRandomLightColor() {
+    const letters = "ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 6)];
+    }
+    return color;
+  }
+
+  function toggleColor(tag) {
+    const randomColor = getRandomLightColor();
+    return randomColor;
+  }
+
   const openEditableBlogTag = () => {
     var array = [...blogTagsArr];
-    array.push({isInput:true,text:""});
+    array.push({ isInput: true, text: "" });
     setBlogTagsArr(array);
   };
 
-  const handleChange = (index,e) => {
+  const handleChange = (index, e) => {
     setInputValue(e.target.value);
     var array = [...blogTagsArr];
-    blogTagsArr[index].text=e.target.value;
-    console.log(e.target.value,index);
-    divRef.current=e.target;
+    blogTagsArr[index].text = e.target.value;
+    console.log(e.target.value, index);
+    divRef.current = e.target;
     if (divRef.current && !divRef.current.contains(e.target)) {
       // Click occurred outside the div
       // Do something here
@@ -49,10 +63,32 @@ function CreateBlog() {
     }
   };
 
-  const handleKeyDown = (index,e) => {
-    if (e.key === "Enter") {
+  const handleKeyDown = (index, e) => {
+    const targetInput = document.querySelector([`[index="${index}"]`]);
+    if(targetInput.value.length>=21){
+      targetInput.style.width = targetInput.value.length * 8 + "px";
+    }
+    if (e.key === "Enter" ) {
       // Do something when Enter is pressed
       console.log("Enter key pressed!");
+      
+      const blogTag = blogTagsArr[index];
+      targetInput.style.width = targetInput.value.length * 8 + "px";
+      if(blogTag.text.trim().length>0){
+        targetInput.parentElement.parentElement.style.backgroundColor =
+        toggleColor(targetInput.value);
+        blogTag.isInput = false;
+
+      }
+
+    }
+    if(e.key=="Backspace"){
+      if(index!=0 && targetInput.value.length==0){
+        const newArr=[...blogTagsArr];
+        newArr.splice(index,1);
+        setBlogTagsArr(newArr);
+      }
+
     }
     if (divRef.current && !divRef.current.contains(e.target)) {
       // Click occurred outside the div
@@ -60,10 +96,10 @@ function CreateBlog() {
       console.log("Clicked outside the div");
     }
   };
-
-  const inputStyle =(inputValue)=> {
-    
-    return {width: `${inputValue.length < 16 ? 16 * 7 : inputValue.length * 7}px`} // Adjust the multiplier to control the width
+  const openEditTag = (blogTag) => {
+    if (blogTag.isInput) {
+      blogTag.isInput = false;
+    }
   };
 
   return (
@@ -118,22 +154,35 @@ function CreateBlog() {
             </h1>
             <ul className="flex flex-row pb-4 text-[12px] font-bold ">
               {blogTagsArr.map((blogTag, index) => (
-                <li className="px-2 py-1 mx-1 rounded border-4 border-transparent bg-slate-100">
-                  <div ref={divRef} hidden={!blogTag.isInput}>
+                <li
+                  className={`px-2 py-1 mx-1 rounded border-4 border-transparent bg-slate-100 `}
+                >
+                  <div
+                    ref={divRef}
+                    className={`flex flex-row items-center ${
+                      blogTag.isInput ? "hidden" : ""
+                    }`}
+                  >
                     #{""}
                     <input
                       value={blogTag.text}
-                      state={""}
-                      onChange={(e)=>{handleChange(index,e);}}
-                      onKeyDown={(e)=>{handleKeyDown(index,e)}}
-                      style={inputStyle(blogTag.text)}
+                      index={index}
+                      onChange={(e) => {
+                        handleChange(index, e);
+                      }}
+                      onKeyDown={(e) => {
+                        handleKeyDown(index, e);
+                      }}
                       placeholder="Type something"
                       className="outline-none bg-transparent fit-content"
                       type="text"
                       maxLength="21"
                     ></input>
                   </div>
-                  <div hidden={blogTag.isInput}>
+                  <div
+                    className={`${blogTag.isInput ? "" : "hidden"}`}
+                    onClick={openEditTag(blogTag)}
+                  >
                     #{" "}
                     <span className="outline-none bg-transparent fit-content">
                       {blogTag.text}
@@ -142,12 +191,27 @@ function CreateBlog() {
                 </li>
               ))}
               <li
-                className="px-2 py-1 mx-1 rounded border-4 border-transparent bg-slate-100"
+                className={`px-2 py-1 mx-1 rounded border-4 border-transparent bg-slate-100 
+                ${
+                  blogTagsArr.length > 2 || isEdit==false ? "hidden" : ""
+                }`}
                 onClick={openEditableBlogTag}
               >
                 +
               </li>
+              {/* <div class="group">
+                <li className="px-2 py-1 mx-1 cursor-pointer rounded border-4 border-transparent bg-slate-100">
+                  i
+                </li>
+                <div class="tooltip hidden group-hover:block absolute left-[96px] bottom-[108px] bg-slate-100 text-slate-500 py-1 px-1 rounded-md">
+                  <div class="arrow-right"></div>
+                  This is a custom tooltip
+                </div>
+              </div> */}
             </ul>
+            <div className="p-2 mb-4 bg-slate-200 w-fit border-16 rounded font-verdana text-[12px] font-bold">
+              Part 2 of Sathwik's Open Source Series
+            </div>
           </div>
         </div>
         <div
