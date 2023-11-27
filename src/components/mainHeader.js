@@ -25,8 +25,8 @@ function MainHeader() {
         <span className="px-2">Series</span>
         <Link to="/about-me"><span className="px-2">About Me</span></Link>
         <span className="px-2">Other Projects</span>
-        <span className="px-2">Portfolio</span>
-        <img src={UserLogoWhite} alt="logo" className="w-6 h-6 ml-2"></img>
+        {/* <span className="px-2">Portfolio</span> */}
+        {/* <img src={UserLogoWhite} alt="logo" className="w-6 h-6 ml-2"></img> */}
       </div>
     </div>
   );
