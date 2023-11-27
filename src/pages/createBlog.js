@@ -7,15 +7,20 @@ import Modal from "../components/modalPopup";
 
 import { DeviceContext } from "../DeviceContext";
 import { useContext, useState, useRef } from "react";
+import SeriesModal from "../components/seriesModalPopup";
 
 function CreateBlog() {
   const deviceContextVal = useContext(DeviceContext);
+  
   const [textData, setTextData] = useState("");
   const [isEdit, setIsEdit] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imgSource, setImgSource] = useState(null);
   const [blogTagsArr, setBlogTagsArr] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [seriesText, setSeriesText] = useState("");
+  const [isSeriesModalOpen, toggleSeriesModal]=useState(false);
+
   const divRef = useRef();
 
   const handleTextData = (data) => {
@@ -29,6 +34,16 @@ function CreateBlog() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const openSeriesModal = () => {
+    toggleSeriesModal(true);
+  };
+
+  const closeSeriesModal = () =>{
+    toggleSeriesModal(false);
+  };
+
+
 
   function getRandomLightColor() {
     const letters = "ABCDEF";
@@ -48,6 +63,17 @@ function CreateBlog() {
     var array = [...blogTagsArr];
     array.push({ isInput: true, text: "" });
     setBlogTagsArr(array);
+  };
+
+  const handleSeriesChange = (e) =>{
+    const targetInput = document.querySelector("[purpose='series']");
+    if(targetInput.value.length>=3){
+      targetInput.style.width = targetInput.value.length * 7 + "px";
+    }
+
+    if(e.target.value.trim()!=""){
+      setSeriesText(e.target.value);
+    }
   };
 
   const handleChange = (index, e) => {
@@ -160,7 +186,7 @@ function CreateBlog() {
                   <div
                     ref={divRef}
                     className={`flex flex-row items-center ${
-                      blogTag.isInput ? "hidden" : ""
+                      blogTag.isInput || isEdit==false ? "hidden" : ""
                     }`}
                   >
                     #{""}
@@ -180,7 +206,7 @@ function CreateBlog() {
                     ></input>
                   </div>
                   <div
-                    className={`${blogTag.isInput ? "" : "hidden"}`}
+                    className={`${blogTag.isInput || isEdit==false? "" : "hidden"}`}
                     onClick={openEditTag(blogTag)}
                   >
                     #{" "}
@@ -210,7 +236,15 @@ function CreateBlog() {
               </div> */}
             </ul>
             <div className="p-2 mb-4 bg-slate-200 w-fit border-16 rounded font-verdana text-[12px] font-bold">
-              Part 2 of Sathwik's Open Source Series
+              {!isEdit && <span onClick={()=>{openSeriesModal();}}>{seriesText}</span>}
+              {isEdit && (<input
+                            value={seriesText}
+                            onChange={(e)=>{handleSeriesChange(e);}} 
+                            type="text" 
+                            purpose="series" 
+                            className="border-transparent outline-none bg-slate-200 rounded border-4">
+
+                            </input>)}
             </div>
           </div>
         </div>
@@ -231,6 +265,13 @@ function CreateBlog() {
           onClose={closeModal}
           setImageSource={setImgSource}
         />
+      </div>
+      <div>
+        <SeriesModal
+          isOpen={isSeriesModalOpen}
+          onClose={closeSeriesModal}
+        >
+        </SeriesModal>
       </div>
     </>
   );
