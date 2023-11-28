@@ -136,10 +136,10 @@ function CreateBlog() {
         </div>
         <div
           className={`flex flex-col relative items-start justify-start left-0  mt-12 ${
-            deviceContextVal === "mobile" ? "mx-[05%]" : "mx-[10%]"
+            deviceContextVal === "mobile" ? "mr-[15%] ml-[15%]": "mr-[25%] ml-[05%]"
           } text-[16px]`}
         >
-          <div className="flex w-[80%] text-[12px] font-bold fixed z-5 pb-4 pt-4 bg-white flex-row justify-between">
+          <div className="flex w-[70%] text-[12px] font-bold fixed z-5 pb-4 pt-4 bg-white flex-row justify-between">
             <button
               className="px-2 h-[40px] bg-slate-100 border-gray-200 "
               onClick={openModal}
@@ -250,7 +250,7 @@ function CreateBlog() {
         </div>
         <div
           className={`${
-            deviceContextVal === "mobile" ? "mx-[05%]" : "mx-[10%]"
+            deviceContextVal === "mobile" ? "mx-[05%]" : "ml-[05%] mr-[25%]"
           } relative top-12`}
         >
           <MarkDownComponent
@@ -270,6 +270,7 @@ function CreateBlog() {
         <SeriesModal
           isOpen={isSeriesModalOpen}
           onClose={closeSeriesModal}
+          series={seriesText}
         >
         </SeriesModal>
       </div>
