@@ -14,13 +14,49 @@ const initializeSeries=()=>{
         {
           "title": "Mastering SEO: A Blogger's Guide",
           "link": "https://example.com/mastering-seo-a-bloggers-guide"
-        }
+        },
+        {
+          "title": "The Art of Effective Blogging",
+          "link": "https://example.com/the-art-of-effective-blogging"
+        },
+        {
+          "title": "10 Tips for Engaging Blog Content",
+          "link": "https://example.com/10-tips-for-engaging-blog-content"
+        },
+        {
+          "title": "Mastering SEO: A Blogger's Guide",
+          "link": "https://example.com/mastering-seo-a-bloggers-guide"
+        },
+        {
+          "title": "The Art of Effective Blogging",
+          "link": "https://example.com/the-art-of-effective-blogging"
+        },
+        {
+          "title": "10 Tips for Engaging Blog Content",
+          "link": "https://example.com/10-tips-for-engaging-blog-content"
+        },
+        {
+          "title": "Mastering SEO: A Blogger's Guide",
+          "link": "https://example.com/mastering-seo-a-bloggers-guide"
+        },
+        {
+          "title": "The Art of Effective Blogging",
+          "link": "https://example.com/the-art-of-effective-blogging"
+        },
+        {
+          "title": "10 Tips for Engaging Blog Content",
+          "link": "https://example.com/10-tips-for-engaging-blog-content"
+        },
+        {
+          "title": "Mastering SEO: A Blogger's Guide",
+          "link": "https://example.com/mastering-seo-a-bloggers-guide"
+        },
     ];
     return dummyArr;
     // setSeriesArr(dummyArr);
 }
 
-function SeriesModal({isOpen,onClose}){
+function SeriesModal({isOpen,onClose,series}){
 
     const [seriesArr,setSeriesArr] = useState(initializeSeries);
     const navigate = useNavigate();
@@ -48,10 +84,10 @@ function SeriesModal({isOpen,onClose}){
           <div className="modal-overlay fixed inset-0 bg-black opacity-50"></div>
           <div className="modal-container bg-white p-6 rounded shadow-lg relative z-50 w-[60%] my-[24px]">
             <div className="modal-content flex flex-col">
-              <span className="text-[24px] font-bold mb-4">Data Science Series</span>
-              <ul>
+              <span className="text-[24px] font-bold mb-4">{series}</span>
+              <ul className="overflow-y-scroll h-[400px]">
                 {seriesArr.map((link,index)=>(
-                    <li onClick={()=>{handleClick(link.link)}}>{link.title}</li>
+                    <li className="p-4 mb-2 border-2 rounded dotted"onClick={()=>{handleClick(link.link)}}>{link.title}</li>
                 ))}
               </ul>
             </div>
