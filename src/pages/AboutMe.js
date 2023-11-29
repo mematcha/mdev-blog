@@ -1,7 +1,13 @@
 import MainHeader from "../components/mainHeader";
 import SkillsCarousel from "../components/skils_carousel/skillsCarousel";
+import resume_pdf from "../assets/pdf/Resume_V4.1.pdf";
 
 function AboutMe() {
+
+  const openResume=()=>{
+    window.open(resume_pdf,'_blank');
+  };
+
   return (
     <>
       <div className="flex flex-col items-center">
@@ -50,7 +56,7 @@ function AboutMe() {
           </div>
           <div>
             <div className="mb-4 font-bold text-[24px]">Resume</div>
-            <div className="p-4 mb-4 border-2 rounded">View Resume</div>
+            <div className="p-4 mb-4 border-2 rounded" onClick={openResume}>View Resume</div>
           </div>
           <div>
             <div className="mb-4 font-bold text-[24px]">Contact</div>
