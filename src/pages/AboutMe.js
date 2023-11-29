@@ -13,7 +13,7 @@ function AboutMe() {
               <p>Hi! Sathwik Matcha over here. You can call me just Sathwik. 😊</p>
               <br></br>
               <p>
-                I am a ML Enthusiast with a knack for Software Development, with
+                I am a Machine Learning Enthusiast with a knack for Software Development, with
                 an extensive knowledge of Frontend Development ranging from
                 React to Angular with over two years of professional background,
                 handling large-scale web projects used by thousands of daily
@@ -40,11 +40,17 @@ function AboutMe() {
                 media space. I hope this website bridges the gap between the
                 two.
               </p>
+              <br></br>
+              <p>
+                I wish to keep this website focused more on the learning, while I do intend to post the latest happenings, 
+                I wish to keep it distinct from the actual learning aspects. My focus areas revolve around Software Development, 
+                Machine Learning and Data Science. 
+              </p>
             </div>
           </div>
           <div>
             <div className="mb-4 font-bold text-[24px]">Resume</div>
-            <div className="p-4 border-2 rounded">View Resume</div>
+            <div className="p-4 mb-4 border-2 rounded">View Resume</div>
           </div>
           <div>
             <div className="mb-4 font-bold text-[24px]">Contact</div>
