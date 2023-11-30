@@ -1,7 +1,7 @@
 import MainHeader from "../components/mainHeader";
-import Footer from "../components/footer";
+import Footer from "../components/OtherComps/footer";
 import MainSearch from "../components/mainSearch";
-import BlogCardNew from "../components/blogCard";
+import BlogCardNew from "../components/BlogCard/blogCard";
 import MLCard from "../components/mailingListCard";
 import { DeviceContext } from '../DeviceContext';
 import { useContext } from 'react';

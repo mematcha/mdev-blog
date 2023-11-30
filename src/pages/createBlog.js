@@ -1,8 +1,5 @@
-import AddContent from "../components/addContent";
-import AddParagraph from "../components/addParagraph";
 import MainHeader from "../components/mainHeader";
 import MarkDownComponent from "../components/markdownComponent";
-import NoteMenu from "../components/noteMenu";
 import Modal from "../components/modalPopup";
 
 import { DeviceContext } from "../DeviceContext";

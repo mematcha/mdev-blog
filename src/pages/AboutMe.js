@@ -1,5 +1,4 @@
 import MainHeader from "../components/mainHeader";
-import SkillsCarousel from "../components/skils_carousel/skillsCarousel";
 import resume_pdf from "../assets/pdf/Resume_V4.1.pdf";
 
 function AboutMe() {
@@ -32,7 +31,7 @@ function AboutMe() {
           <div className="mb-4">
             <div className="mb-4 font-bold text-[24px]">Technical Skills</div>
             <div>
-              <SkillsCarousel></SkillsCarousel>
+              {/* <SkillsCarousel></SkillsCarousel> */}
             </div>
           </div>
           <div className="mb-4">
