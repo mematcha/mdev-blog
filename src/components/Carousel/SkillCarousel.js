@@ -1,6 +1,6 @@
 import "./SkillCarousel.scss";
 
-const SkillCarousel = () => {
+function SkillCarousel ()  {
   // Define carousel settings
   const settings = {
     dots: true, // Display navigation dots
