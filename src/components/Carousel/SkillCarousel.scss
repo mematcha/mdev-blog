@@ -6,8 +6,6 @@ body{
 }
 .carousel{
     position: relative;
-    display: flex;
-    flex-direction: row;
     &-button{
         position: absolute;
         background: none;
@@ -34,7 +32,7 @@ body{
     }
 }
 .slide{
-    position: absolute;
+    position: relative;
     inset:0;
     opacity: 0;
     width:24px;
