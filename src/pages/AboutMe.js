@@ -33,8 +33,8 @@ function AboutMe() {
           <div className="mb-4">
             <div className="mb-4 font-bold text-[24px]">Technical Skills</div>
             <div>
-              {/* <SkillCarousel></SkillCarousel> */}
-              <CarouselGeneral></CarouselGeneral>
+              <SkillCarousel></SkillCarousel>
+              {/* <CarouselGeneral></CarouselGeneral> */}
             </div>
           </div>
           <div className="mb-4">

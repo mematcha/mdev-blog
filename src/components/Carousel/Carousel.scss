@@ -1,13 +1,10 @@
-.carousel{
-    height: 200px;
-    z-index: 30;
-    img{
-        width:100%;
-        height:100px;
-    }
+.box{
+    width:100%;
+    height:100px;
 }
-.slide{
-    .selected{
-        height:150px;
+.carousel{
+    &-root{
+        height: inherit;
     }
-} 
+    
+}
