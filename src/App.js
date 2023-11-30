@@ -9,6 +9,7 @@ import UserPage from "./pages/userPage";
 import CreateBlog from "./pages/createBlog";
 import { ThemeContext, ThemeProvider } from "./ThemeContext";
 import AboutMe from "./pages/AboutMe";
+import CarouselGeneral from "./components/Carousel/Carousel";
 // import socialCard from './components/'
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
               path="/create-blog"
               element={<CreateBlog></CreateBlog>}
             ></Route>
+            <Route path="/carousel-general" element={<CarouselGeneral></CarouselGeneral>}></Route>
           </Routes>
         </ThemeProvider>
       </DeviceProvider>
