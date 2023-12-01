@@ -4,9 +4,8 @@ import SkillCarousel from "../components/Carousel/SkillCarousel";
 import CarouselGeneral from "../components/Carousel/Carousel";
 
 function AboutMe() {
-
-  const openResume=()=>{
-    window.open(resume_pdf,'_blank');
+  const openResume = () => {
+    window.open(resume_pdf, "_blank");
   };
 
   return (
@@ -17,24 +16,32 @@ function AboutMe() {
           <div className="mb-4">
             <div className="mb-4 font-bold text-[24px]">About Me</div>
             <div>
-              <p>Hi! Sathwik Matcha over here. You can call me just Sathwik. 😊</p>
+              <p>
+                Hi! Sathwik Matcha over here. You can call me just Sathwik. 😊
+              </p>
               <br></br>
               <p>
-                I am a Machine Learning Enthusiast with a knack for Software Development, with
-                an extensive knowledge of Frontend Development ranging from
-                React to Angular with over two years of professional background,
-                handling large-scale web projects used by thousands of daily
-                active customers using Angular and React in Agile work settings.
-                Proven ability to build platforms while maintaining high
-                standards for code efficiency and quality.
+                I am a Machine Learning Enthusiast with a knack for Software
+                Development, with an extensive knowledge of Frontend Development
+                ranging from React to Angular with over two years of
+                professional background, handling large-scale web projects used
+                by thousands of daily active customers using Angular and React
+                in Agile work settings. Proven ability to build platforms while
+                maintaining high standards for code efficiency and quality.
               </p>
             </div>
           </div>
           <div className="mb-4">
             <div className="mb-4 font-bold text-[24px]">Technical Skills</div>
             <div>
-              <SkillCarousel></SkillCarousel>
-              {/* <CarouselGeneral></CarouselGeneral> */}
+              {/* <SkillCarousel></SkillCarousel> */}
+              <CarouselGeneral
+                element={<div>Lorem Ipsum</div>}
+                settings={{
+                  showDots: true,
+                  showArrows: true
+                }}
+              ></CarouselGeneral>
             </div>
           </div>
           <div className="mb-4">
@@ -50,15 +57,19 @@ function AboutMe() {
               </p>
               <br></br>
               <p>
-                I wish to keep this website focused more on the learning, while I do intend to post the latest happenings, 
-                I wish to keep it distinct from the actual learning aspects. My focus areas revolve around Software Development, 
-                Machine Learning and Data Science. 
+                I wish to keep this website focused more on the learning, while
+                I do intend to post the latest happenings, I wish to keep it
+                distinct from the actual learning aspects. My focus areas
+                revolve around Software Development, Machine Learning and Data
+                Science.
               </p>
             </div>
           </div>
           <div>
             <div className="mb-4 font-bold text-[24px]">Resume</div>
-            <div className="p-4 mb-4 border-2 rounded" onClick={openResume}>View Resume</div>
+            <div className="p-4 mb-4 border-2 rounded" onClick={openResume}>
+              View Resume
+            </div>
           </div>
           <div>
             <div className="mb-4 font-bold text-[24px]">Contact</div>

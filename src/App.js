@@ -32,7 +32,19 @@ function App() {
               path="/create-blog"
               element={<CreateBlog></CreateBlog>}
             ></Route>
-            <Route path="/carousel-general" element={<CarouselGeneral></CarouselGeneral>}></Route>
+            <Route path="/carousel-general" 
+                element={
+                <CarouselGeneral 
+                    element={<div>Lorem Ipsum</div>}
+                    settings={{
+                      showDots:true,
+                      showArrows:true
+                      }}>
+
+                </CarouselGeneral>}
+                >
+                
+            </Route>
           </Routes>
         </ThemeProvider>
       </DeviceProvider>

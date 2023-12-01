@@ -26,16 +26,16 @@
         right:1rem;
     }
 }
-.slide{
-    position: relative;
-    inset:0;
-    opacity: 0;
-    width:24px;
-    height:24px;
-    img{
-        display: block ;
-    } 
-}
-.slide[data-active]{
-    opacity: 1;
-}
+// .slide{
+//     position: relative;
+//     inset:0;
+//     opacity: 0;
+//     width:24px;
+//     height:24px;
+//     img{
+//         display: block ;
+//     } 
+// }
+// .slide[data-active]{
+//     opacity: 1;
+// }
