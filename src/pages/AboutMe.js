@@ -2,12 +2,20 @@ import MainHeader from "../components/mainHeader";
 import resume_pdf from "../assets/pdf/Resume_V4.1.pdf";
 import SkillCarousel from "../components/Carousel/SkillCarousel";
 import CarouselGeneral from "../components/Carousel/Carousel";
+import CarouselTemplate from "../components/Carousel/CarouselTemplate";
 
 function AboutMe() {
   const openResume = () => {
     window.open(resume_pdf, "_blank");
   };
-
+  const resumeObj=[
+    { title: "Programming Languages", courses: ["Javascript", "Typescript", "Java", "Python", "R", "C++"] },
+    { title: "Web Technologies", courses: ["Angular", "React TS", "Node.js", "Express.js", "Responsive Design", "Progressive Web Apps (PWA)"] },
+    { title: "Databases", courses: ["MySQL", "Microsoft SQL Server"] },
+    { title: "Frameworks / Libraries", courses: ["Swing", ".NET MVC", "Lucene", "Tailwind CSS", "Chart JS", "React-ag-grid", "Angular Material"] },
+    { title: "Version Control", courses: ["Azure DevOps", "Git", "GitHub"] }
+  ]
+  
   return (
     <>
       <div className="flex flex-col items-center">
@@ -36,7 +44,8 @@ function AboutMe() {
             <div>
               {/* <SkillCarousel></SkillCarousel> */}
               <CarouselGeneral
-                element={<div>Lorem Ipsum</div>}
+                element={<CarouselTemplate></CarouselTemplate>}
+                data={resumeObj}
                 settings={{
                   showDots: true,
                   showArrows: true
