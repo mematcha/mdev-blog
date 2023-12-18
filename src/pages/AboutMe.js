@@ -40,7 +40,7 @@ function AboutMe() {
     },
     { title: "Version Control", courses: ["Azure DevOps", "Git", "GitHub"] },
   ];
-  const aboutMeArr=['About Me','Technical Skills','Why MDev.Blog?','Resume','Contact'];
+  const aboutMeArr=['About Me','Technical Skills','Why MDev.Blog?','Resume'];
 
   const openLink=(link)=>{
     if(link=="linkedin"){
@@ -122,13 +122,13 @@ function AboutMe() {
                 View Resume
               </div>
             </div>
-            <div>
+            {/* <div>
               <div className="mb-4 font-bold text-[24px]">Contact</div>
               <div className="">Email</div>
               <div>LinkedIn</div>
               <div>Github</div>
               <div>Kaggle</div>
-            </div>
+            </div> */}
           </div>
           <div className="w-[20%] mr-[5%] fixed right-0 top-12 flex flex-col">
             <SideCard data={aboutMeArr}></SideCard>
