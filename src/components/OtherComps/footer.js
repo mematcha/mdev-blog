@@ -1,4 +1,4 @@
-import { DeviceContext } from "../DeviceContext";
+import { DeviceContext } from "../../DeviceContext";
 import { useContext } from "react";
 
 function Footer() {
