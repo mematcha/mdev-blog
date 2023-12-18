@@ -13,7 +13,7 @@ function BlogPage(props) {
       </div>
       <div
         className={`flex justify-center flex-col body ${
-          deviceContextVal === "mobile" ? "mx-[10%]" : "mx-[20%]"
+          deviceContextVal === "mobile" ? "mx-[10%]" : "ml-[05%] mr-[25%]"
         }`}
       >
         <div>
