@@ -39,7 +39,7 @@ function MarkDownComponent({sendTextData,isEdit}) {
 
   return (
     <>
-      {isEdit && (<div className="flex flex-col border-4 border-gray-200 p-4">
+      {isEdit && (<div className="flex flex-col border-4 border-gray-200 p-4" style={{fontFamily:"Verdana"}}>
         <textarea 
             value={text}
             id="notearea"
@@ -49,10 +49,10 @@ function MarkDownComponent({sendTextData,isEdit}) {
         </textarea>
       </div>)}
       {!isEdit && (
-        <div className="flex flex-col border-4 border-gray-200 p-4 px-8">
+      <div className="flex flex-col border-4 border-gray-200 p-4 px-8" style={{fontFamily:"Verdana"}}>
         <div 
             className="md-result outline-none resize-none">
-              <ReactMarkdown className="black-disc-bullet" children={text}></ReactMarkdown>
+              <ReactMarkdown className="black-disc-bullet text-justify" children={text}></ReactMarkdown>
         </div>
       </div>
       )}

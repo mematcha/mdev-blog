@@ -1,38 +1,29 @@
-import MainHeader from "../components/mainHeader";
+import MainHeader from "../components/Header/mainHeader";
 import MarkDownComponent from "../components/markdownComponent";
 import Modal from "../components/modalPopup";
 
 import { DeviceContext } from "../DeviceContext";
-import { useContext, useState, useRef } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
+import SeriesModal from "../components/Series/seriesModalPopup";
+import SeriesOverall from "../components/Series/seriesModalOverall";
 
 function CreateBlog() {
   const deviceContextVal = useContext(DeviceContext);
+  
   const [textData, setTextData] = useState("");
   const [isEdit, setIsEdit] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imgSource, setImgSource] = useState(null);
   const [blogTagsArr, setBlogTagsArr] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [seriesText, setSeriesText] = useState("Add Series");
+  const [isSeriesModalOpen, toggleSeriesModal]=useState(false);
+  const [isSeriesOverallOpen,toggleSeriesOverall]=useState(false);
+
   const divRef = useRef();
 
   const handleTextData = (data) => {
     setTextData(data);
-  };
-
-  const openFilePicker = (e) => {
-    document.getElementById("fileInput").click();
-  };
-
-  const acceptFile = (e) => {
-    const file = e.target.files[0];
-
-    if (file && file.type.startsWith("image/")) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImgSource(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
   };
 
   const openModal = () => {
@@ -43,24 +34,73 @@ function CreateBlog() {
     setIsModalOpen(false);
   };
 
+  const openSeriesModal = () => {
+    toggleSeriesModal(true);
+  };
+
+  const openSeriesOverall=() => {
+    toggleSeriesOverall(true);
+  };
+
+  const closeSeriesOverall = () =>{
+    toggleSeriesOverall(false);
+  };
+
+  const closeSeriesModal = () =>{
+    toggleSeriesModal(false);
+  };
+
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      const message = 'Are you sure you want to leave? Your changes may not be saved.';
+      event.returnValue = message; // Standard for most browsers
+      return message; // For some older browsers
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
+  function getRandomLightColor() {
+    const letters = "ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 6)];
+    }
+    return color;
+  }
+
+  function toggleColor(tag) {
+    const randomColor = getRandomLightColor();
+    return randomColor;
+  }
+
   const openEditableBlogTag = () => {
     var array = [...blogTagsArr];
-    array.push({isInput:true,text:""});
+    array.push({ isInput: true, text: "" });
     setBlogTagsArr(array);
   };
 
-  const handleChange = (index,e) => {
-    setInputValue(e.target.value);
-    var array = [...blogTagsArr];
-    blogTagsArr[index].text=e.target.value;
-    console.log(e.target.value,index);
+  const handleSeriesChange = (e) =>{
+    const targetInput = document.querySelector("[purpose='series']");
+    if(targetInput.value.length>=3){
+      targetInput.style.width = targetInput.value.length * 7 + "px";
+    }
+
+    if(e.target.value.trim()!=""){
+      setSeriesText(e.target.value);
+    }
   };
 
-  const handleKeyDown = (index,e) => {
-    if (e.key === "Enter") {
-      // Do something when Enter is pressed
-      console.log("Enter key pressed!");
-    }
+  const handleChange = (index, e) => {
+    setInputValue(e.target.value);
+    var array = [...blogTagsArr];
+    blogTagsArr[index].text = e.target.value;
+    console.log(e.target.value, index);
+    divRef.current = e.target;
     if (divRef.current && !divRef.current.contains(e.target)) {
       // Click occurred outside the div
       // Do something here
@@ -68,8 +108,47 @@ function CreateBlog() {
     }
   };
 
-  const inputStyle = {
-    width: `${inputValue.length < 9 ? 9 * 7 : inputValue.length * 7}px`, // Adjust the multiplier to control the width
+  const handleKeyDown = (index, e) => {
+    const targetInput = document.querySelector([`[index="${index}"]`]);
+    if(targetInput.value.length>=21){
+      targetInput.style.width = targetInput.value.length * 8 + "px";
+    }
+    if (e.key === "Enter" ) {
+      // Do something when Enter is pressed
+      console.log("Enter key pressed!");
+      
+      const blogTag = blogTagsArr[index];
+      targetInput.style.width = targetInput.value.length * 8 + "px";
+      if(blogTag.text.trim().length>0){
+        targetInput.parentElement.parentElement.style.backgroundColor =
+        toggleColor(targetInput.value);
+        blogTag.isInput = false;
+
+      }
+
+    }
+    if(e.key=="Backspace"){
+      if(index!=0 && targetInput.value.length==0){
+        const newArr=[...blogTagsArr];
+        newArr.splice(index,1);
+        setBlogTagsArr(newArr);
+      }
+
+    }
+    if (divRef.current && !divRef.current.contains(e.target)) {
+      // Click occurred outside the div
+      // Do something here
+      console.log("Clicked outside the div");
+    }
+  };
+  const openEditTag = (blogTag) => {
+    if (blogTag.isInput) {
+      blogTag.isInput = false;
+    }
+  };
+
+  const openSeries=()=>{
+
   };
 
   return (
@@ -80,10 +159,10 @@ function CreateBlog() {
         </div>
         <div
           className={`flex flex-col relative items-start justify-start left-0  mt-12 ${
-            deviceContextVal === "mobile" ? "mx-[05%]" : "mx-[10%]"
+            deviceContextVal === "mobile" ? "mr-[15%] ml-[15%]": "mr-[25%] ml-[05%]"
           } text-[16px]`}
         >
-          <div className="flex w-[80%] text-[12px] font-bold fixed z-5 pb-4 pt-4 bg-white flex-row justify-between">
+          <div className="flex w-[70%] text-[12px] font-bold fixed z-5 pb-4 pt-4 bg-white flex-row justify-between">
             <button
               className="px-2 h-[40px] bg-slate-100 border-gray-200 "
               onClick={openModal}
@@ -113,13 +192,6 @@ function CreateBlog() {
           </div>
           <div className="relative top-12 z-0">
             <div className="flex justify-around align-center mt-[40px] bg-slate-100">
-              <input
-                type="file"
-                accept="image/*"
-                id="fileInput"
-                onChange={acceptFile}
-                className="hidden"
-              ></input>
               {imgSource == null ? (
                 <></>
               ) : (
@@ -131,21 +203,35 @@ function CreateBlog() {
             </h1>
             <ul className="flex flex-row pb-4 text-[12px] font-bold ">
               {blogTagsArr.map((blogTag, index) => (
-                <li className="px-2 py-1 mx-1 rounded border-4 border-transparent bg-slate-100">
-                  <div ref={divRef} hidden={!blogTag.isInput}>
+                <li
+                  className={`px-2 py-1 mx-1 rounded border-4 border-transparent bg-slate-100 `}
+                >
+                  <div
+                    ref={divRef}
+                    className={`flex flex-row items-center ${
+                      blogTag.isInput || isEdit==false ? "hidden" : ""
+                    }`}
+                  >
                     #{""}
                     <input
                       value={blogTag.text}
-                      onChange={(e)=>{handleChange(index,e);}}
-                      onKeyDown={(e)=>{handleKeyDown(index,e)}}
-                      style={inputStyle}
+                      index={index}
+                      onChange={(e) => {
+                        handleChange(index, e);
+                      }}
+                      onKeyDown={(e) => {
+                        handleKeyDown(index, e);
+                      }}
                       placeholder="Type something"
                       className="outline-none bg-transparent fit-content"
                       type="text"
                       maxLength="21"
                     ></input>
                   </div>
-                  <div hidden={blogTag.isInput}>
+                  <div
+                    className={`${blogTag.isInput || isEdit==false? "" : "hidden"}`}
+                    onClick={openEditTag(blogTag)}
+                  >
                     #{" "}
                     <span className="outline-none bg-transparent fit-content">
                       {blogTag.text}
@@ -154,17 +240,33 @@ function CreateBlog() {
                 </li>
               ))}
               <li
-                className="px-2 py-1 mx-1 rounded border-4 border-transparent bg-slate-100"
+                className={`px-2 py-1 mx-1 rounded border-4 border-transparent bg-slate-100 
+                ${
+                  blogTagsArr.length > 2 || isEdit==false ? "hidden" : ""
+                }`}
                 onClick={openEditableBlogTag}
               >
                 +
               </li>
+              {/* <div class="group">
+                <li className="px-2 py-1 mx-1 cursor-pointer rounded border-4 border-transparent bg-slate-100">
+                  i
+                </li>
+                <div class="tooltip hidden group-hover:block absolute left-[96px] bottom-[108px] bg-slate-100 text-slate-500 py-1 px-1 rounded-md">
+                  <div class="arrow-right"></div>
+                  This is a custom tooltip
+                </div>
+              </div> */}
             </ul>
+            <div className="p-2 mb-4 bg-slate-200 w-fit border-16 rounded font-verdana text-[12px] font-bold">
+              {!isEdit && <span onClick={()=>{openSeries();}}>{seriesText}</span>}
+              {isEdit && (<div onClick={()=>{openSeriesOverall();}}>{seriesText}</div>)}
+            </div>
           </div>
         </div>
         <div
           className={`${
-            deviceContextVal === "mobile" ? "mx-[05%]" : "mx-[10%]"
+            deviceContextVal === "mobile" ? "mx-[05%]" : "ml-[05%] mr-[25%]"
           } relative top-12`}
         >
           <MarkDownComponent
@@ -177,9 +279,24 @@ function CreateBlog() {
         <Modal
           isOpen={isModalOpen}
           onClose={closeModal}
-          openFile={openFilePicker}
           setImageSource={setImgSource}
         />
+      </div>
+      <div>
+        <SeriesModal
+          isOpen={isSeriesModalOpen}
+          onClose={closeSeriesModal}
+          series={seriesText}
+        >
+        </SeriesModal>
+      </div>
+      <div>
+        <SeriesOverall
+         isOpen={isSeriesOverallOpen}
+         onClose={closeSeriesOverall}
+         series={seriesText}
+        >
+        </SeriesOverall>
       </div>
     </>
   );

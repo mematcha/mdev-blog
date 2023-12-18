@@ -1,4 +1,4 @@
-import MainHeader from "../components/mainHeader";
+import MainHeader from "../components/Header/mainHeader";
 
 
 function UserPage() {

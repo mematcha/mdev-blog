@@ -1,8 +1,8 @@
 import "./mainHeader.scss";
-import LogoTransparent from "../assets/Asset 6.svg";
-import LogoBlack from "../assets/logo_v2.svg";
-import UserLogoWhite from "../assets/userLogoDefault.svg";
-import { DeviceContext } from "../DeviceContext";
+import LogoTransparent from "../../assets/Asset 6.svg"
+import LogoBlack from "../../assets/logo_v2.svg";
+import UserLogoWhite from "../../assets/userLogoDefault.svg";
+import { DeviceContext } from "../../DeviceContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
@@ -22,6 +22,7 @@ function MainHeader() {
         <img src={LogoBlack} alt="logo" className="w-8 h-8"></img>
       </Link>
       <div className="flex font-bold flex-row text-[12px] items-center">
+        <span className="px-2">User</span>
         <span className="px-2">Series</span>
         <Link to="/about-me"><span className="px-2">About Me</span></Link>
         <span className="px-2">Other Projects</span>
