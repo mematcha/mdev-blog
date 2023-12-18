@@ -3,8 +3,9 @@ import MarkDownComponent from "../components/markdownComponent";
 import Modal from "../components/modalPopup";
 
 import { DeviceContext } from "../DeviceContext";
-import { useContext, useState, useRef } from "react";
-import SeriesModal from "../components/seriesModalPopup";
+import { useContext, useState, useRef, useEffect } from "react";
+import SeriesModal from "../components/Series/seriesModalPopup";
+import SeriesOverall from "../components/Series/seriesModalOverall";
 
 function CreateBlog() {
   const deviceContextVal = useContext(DeviceContext);
@@ -15,8 +16,9 @@ function CreateBlog() {
   const [imgSource, setImgSource] = useState(null);
   const [blogTagsArr, setBlogTagsArr] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [seriesText, setSeriesText] = useState("");
+  const [seriesText, setSeriesText] = useState("Add Series");
   const [isSeriesModalOpen, toggleSeriesModal]=useState(false);
+  const [isSeriesOverallOpen,toggleSeriesOverall]=useState(false);
 
   const divRef = useRef();
 
@@ -36,11 +38,31 @@ function CreateBlog() {
     toggleSeriesModal(true);
   };
 
+  const openSeriesOverall=() => {
+    toggleSeriesOverall(true);
+  };
+
+  const closeSeriesOverall = () =>{
+    toggleSeriesOverall(false);
+  };
+
   const closeSeriesModal = () =>{
     toggleSeriesModal(false);
   };
 
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      const message = 'Are you sure you want to leave? Your changes may not be saved.';
+      event.returnValue = message; // Standard for most browsers
+      return message; // For some older browsers
+    };
 
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   function getRandomLightColor() {
     const letters = "ABCDEF";
@@ -123,6 +145,10 @@ function CreateBlog() {
     if (blogTag.isInput) {
       blogTag.isInput = false;
     }
+  };
+
+  const openSeries=()=>{
+
   };
 
   return (
@@ -233,15 +259,8 @@ function CreateBlog() {
               </div> */}
             </ul>
             <div className="p-2 mb-4 bg-slate-200 w-fit border-16 rounded font-verdana text-[12px] font-bold">
-              {!isEdit && <span onClick={()=>{openSeriesModal();}}>{seriesText}</span>}
-              {isEdit && (<input
-                            value={seriesText}
-                            onChange={(e)=>{handleSeriesChange(e);}} 
-                            type="text" 
-                            purpose="series" 
-                            className="border-transparent outline-none bg-slate-200 rounded border-4">
-
-                            </input>)}
+              {!isEdit && <span onClick={()=>{openSeries();}}>{seriesText}</span>}
+              {isEdit && (<div onClick={()=>{openSeriesOverall();}}>{seriesText}</div>)}
             </div>
           </div>
         </div>
@@ -270,6 +289,14 @@ function CreateBlog() {
           series={seriesText}
         >
         </SeriesModal>
+      </div>
+      <div>
+        <SeriesOverall
+         isOpen={isSeriesOverallOpen}
+         onClose={closeSeriesOverall}
+         series={seriesText}
+        >
+        </SeriesOverall>
       </div>
     </>
   );

@@ -75,7 +75,7 @@ function SeriesModal({isOpen,onClose,series}){
 
 
     const handleClick=(link)=>{
-        navigate(link);
+        window.open(link,"_blank");
     };
     if (!isOpen) return null;
 
