@@ -1,8 +1,7 @@
-import MainHeader from "../components/mainHeader";
+import MainHeader from "../components/Header/mainHeader";
 import Footer from "../components/OtherComps/footer";
 import MainSearch from "../components/mainSearch";
 import BlogCardNew from "../components/BlogCard/blogCard";
-import MLCard from "../components/mailingListCard";
 import { DeviceContext } from '../DeviceContext';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';

@@ -1,4 +1,4 @@
-import MainHeader from "../components/mainHeader";
+import MainHeader from "../components/Header/mainHeader";
 import resume_pdf from "../assets/pdf/Resume_V4.1.pdf";
 import SkillCarousel from "../components/Carousel/SkillCarousel";
 import CarouselGeneral from "../components/Carousel/Carousel";

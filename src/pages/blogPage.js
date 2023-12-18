@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { DeviceContext } from "../DeviceContext";
-import MainHeader from "../components/mainHeader";
+import MainHeader from "../components/Header/mainHeader";
 import Poster1Img from "../assets/4_qsasa144.jpg";
 
 function BlogPage(props) {
