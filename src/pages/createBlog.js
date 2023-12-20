@@ -174,8 +174,6 @@ function CreateBlog() {
     }
   };
 
-  const openSeries = () => {};
-
   return (
     <>
       <div className="flex flex-col">
