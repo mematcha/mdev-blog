@@ -15,9 +15,10 @@ function MainHeader() {
   return (
     //Main Header Class
     <div
-      className={`text-3xl h-12 p-1
-        ${deviceContextVal === "mobile" ? "w-[90%]" : "w-[80%]"} 
+      className={`text-3xl h-12 p-1 w-[100%]
+        ${deviceContextVal === "mobile" ? "px-[5%]" : "px-[10%]"} 
         flex items-center justify-between`}
+        style={{backgroundColor:`${theme=="light"?"#fff":"#1e1e1e"}`}}
     >
       <Link to="/">
         <img src={LogoBlack} alt="logo" className="w-8 h-8"></img>

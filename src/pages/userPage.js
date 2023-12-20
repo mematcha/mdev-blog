@@ -4,8 +4,7 @@ import MainHeader from "../components/Header/mainHeader";
 import { useContext, useEffect } from "react";
 
 function UserPage() {
-
-  const {theme,setNewTheme} = useContext(ThemeContext);
+  const { theme, setNewTheme } = useContext(ThemeContext);
   useEffect(() => {
     document.title = "User Page | mDev";
   }, []);
@@ -92,15 +91,19 @@ function UserPage() {
     },
   ];
 
-  const toggleTheme=(themearg)=>{
-    const app=document.getElementsByClassName("App")[0];
-    localStorage.setItem("theme",themearg);
-    app.setAttribute("theme",themearg);
+  const toggleTheme = (themearg) => {
+    const app = document.getElementsByClassName("App")[0];
+    setNewTheme(themearg);
+    localStorage.setItem("theme", themearg);
+    app.setAttribute("theme", themearg);
   };
-
+  console.log(theme);
   return (
     <div className="flex flex-col">
-      <div className="body-center fixed flex justify-center top-0 left-0 shadow z-10">
+      <div
+        className="body-center fixed flex justify-center top-0 left-0 shadow z-10"
+        style={{ backgroundColor: `${theme == "light" ? "#fff" : "#1e1e1e"}` }}
+      >
         <MainHeader></MainHeader>
       </div>
       <div className="relative top-20 ml-[10%] mr-[10%] mb-[100px]">
@@ -129,7 +132,10 @@ function UserPage() {
           <div className="font-bold text-[20px] pb-4">Blogs</div>
           <div className="flex flex-col overflow-y-scroll h-[400px]">
             {devBlogArticleTitles.map((article, index) => (
-              <div key={index} className="p-4 border-2 rounded flex flex-col justify-between">
+              <div
+                key={index}
+                className="p-4 border-2 rounded flex flex-col justify-between"
+              >
                 <span className="cursor-pointer">{article}</span>
                 <div className="text-slate-400 flex flex-row justify-between mt-4">
                   <button>Publish</button>
@@ -146,7 +152,10 @@ function UserPage() {
           <div className="font-bold text-[20px] pb-4">Series</div>
           <div className="flex flex-col overflow-y-scroll h-48">
             {devBlogSeries.map((article, index) => (
-              <div key={index} className="p-4 border-2 rounded flex flex-row justify-between">
+              <div
+                key={index}
+                className="p-4 border-2 rounded flex flex-row justify-between"
+              >
                 <span className="cursor-pointer">{article.title}</span>
                 <div className="text-slate-400">
                   <button className="mx-2">Delete</button>
@@ -159,15 +168,30 @@ function UserPage() {
         <div className="p-2">
           <div className="font-bold text-[20px] pb-4">Display</div>
           <div className="text-slate-400 flex flex-row justify-between my-4">
-            <button className="mx-2 flex flex-row items-center" onClick={()=>{toggleTheme("light");}}>
+            <button
+              className="mx-2 flex flex-row items-center"
+              onClick={() => {
+                toggleTheme("light");
+              }}
+            >
               <div className="icon-sunlight mr-2"></div>
               Light
             </button>
-            <button className="mx-2 flex flex-row items-center" onClick={()=>{toggleTheme("dark");}}>
+            <button
+              className="mx-2 flex flex-row items-center"
+              onClick={() => {
+                toggleTheme("dark");
+              }}
+            >
               <div className="icon-dark mr-2"></div>
               Dark
             </button>
-            <button className="mx-2 flex flex-row items-center" onClick={()=>{toggleTheme("system");}}>
+            <button
+              className="mx-2 flex flex-row items-center"
+              onClick={() => {
+                toggleTheme("system");
+              }}
+            >
               <div className="icon-settings mr-2"></div>
               System
             </button>
