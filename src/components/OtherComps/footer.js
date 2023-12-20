@@ -9,7 +9,7 @@ function Footer() {
     <div
       className={`p-1
                       bottom-0 left-0 w-full 
-                      bg-slate-950 shadow 
+                      bg-black shadow 
                       flex items-center justify-center px-12 py-6 ${
                         deviceContextVal === "mobile" ? "text-[8px] hidden" : "text-xs"
                       }`}
