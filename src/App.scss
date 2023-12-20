@@ -104,6 +104,11 @@ body{
     width:32px;
     height: 32px;
   }
+  &-check{
+    background: url('./assets/check.svg') no-repeat;
+    width:16px;
+    height: 16px;
+  }
 }
 .dropzone {
     border: 2px dashed #ccc;
