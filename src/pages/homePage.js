@@ -65,7 +65,7 @@ function HomePage() {
           {/* <MLCard></MLCard> */}
           <div>
             {blogs.map((blog,index)=>(
-              <BlogCardNew blog={blog} handleOnClick={handleOnClick}></BlogCardNew>
+              <BlogCardNew key={"blogCard"+index}blog={blog} handleOnClick={handleOnClick}></BlogCardNew>
             ))}
             {/* <BlogCardNew handleOnClick={handleOnClick}></BlogCardNew>
             <BlogCardNew handleOnClick={handleOnClick}></BlogCardNew>
