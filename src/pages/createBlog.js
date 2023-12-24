@@ -69,20 +69,20 @@ function CreateBlog() {
     toggleSeriesModal(false);
   };
 
-  useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      const message =
-        "Are you sure you want to leave? Your changes may not be saved.";
-      event.returnValue = message; // Standard for most browsers
-      return message; // For some older browsers
-    };
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+  //     const message =
+  //       "Are you sure you want to leave? Your changes may not be saved.";
+  //     event.returnValue = message; // Standard for most browsers
+  //     return message; // For some older browsers
+  //   };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
 
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, []);
 
   function getRandomLightColor() {
     const letters = "ABCDEF";
@@ -174,8 +174,6 @@ function CreateBlog() {
     }
   };
 
-  const openSeries = () => {};
-
   return (
     <>
       <div className="flex flex-col">
@@ -209,7 +207,6 @@ function CreateBlog() {
                 className="px-2 py-1 h-[40px] mr-2 bg-slate-100 border-gray-200"
                 onClick={() => {
                   setIsEdit(true);
-                  console.log(textData);
                 }}
               >
                 Edit
@@ -318,6 +315,7 @@ function CreateBlog() {
             </ul>
           </div>
         </div>
+        
         <div
           className={`${
             deviceContextVal === "mobile" ? "mx-[05%]" : "ml-[10%] mr-[10%]"

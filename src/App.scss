@@ -109,6 +109,36 @@ body{
     width:16px;
     height: 16px;
   }
+  &-image{
+    background: url('./assets/image_outline.svg') no-repeat;
+    width:24px;
+    height: 24px;
+  }
+  &-link{
+    background: url('./assets/link.svg') no-repeat;
+    width:24px;
+    height: 24px;
+  }
+  &-bulleted{
+    background: url('./assets/bulletlist.svg') no-repeat;
+    width:24px;
+    height: 24px;
+  }
+  &-gif{
+    background: url('./assets/gif.svg') no-repeat;
+    width:24px;
+    height: 24px;
+  }
+  &-codeblock{
+    background: url('./assets/code_block.svg') no-repeat;
+    width:24px;
+    height: 24px;
+  }
+  &-carousel{
+    background: url('./assets/carousel.svg') no-repeat;
+    width:24px;
+    height: 24px;
+  }
 }
 .dropzone {
     border: 2px dashed #ccc;
@@ -121,10 +151,10 @@ body{
     justify-content: center;
   }
   
-  .dropzone img {
-    max-width: 100%;
-    max-height: 100%;
-  }
+.dropzone img {
+  max-width: 100%;
+  max-height: 100%;
+}
 
 // .list-menu {
 //     li {
