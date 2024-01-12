@@ -47,12 +47,10 @@ function MarkDownComponent({ sendTextData, isEdit }) {
   const [newHeight, setNewHeight] = useState(600);
   const originalHeight = 600;
   let unicodeBidiValue = "isolate";
-  useEffect(() => {
-    sendTextData(text);
-  }, [text]);
 
   useEffect(() => {
     if (!isEdit) {
+      sendTextData(editor.children);
       styleLinks();
     }
   }, [isEdit]);
@@ -101,7 +99,6 @@ function MarkDownComponent({ sendTextData, isEdit }) {
     const { attributes, children, element } = props;
     const { youtubeId } = element;
     const editor = useSlateStatic();
-    console.log(youtubeId);
     return (
       <div {...attributes}>
         <YouTubeEmbed
@@ -521,7 +518,7 @@ function MarkDownComponent({ sendTextData, isEdit }) {
         >
 
         </textarea> */}
-          <Slate editor={editor} initialValue={initialValue}>
+          <Slate editor={editor} initialValue={initialValue} va>
             <Editable
               placeholder="Enter your message here..."
               renderElement={renderElement}
