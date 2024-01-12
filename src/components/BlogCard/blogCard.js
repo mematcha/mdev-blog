@@ -9,7 +9,7 @@ function BlogCardNew({blog,handleOnClick}) {
       //Main Header Class
       <div className='text-3xl my-4 w-full h-auto 
                       flex flex-row items-start
-                      justify-center cursor-pointer' onClick={handleOnClick}>
+                      justify-center cursor-pointer transition hover:scale-105 duration-300' onClick={handleOnClick}>
             <div className='text-[10px] flex flex-col justify-center w-full'> 
                 <div className='text-[20px] flex items-center my-2 font-bold'>{blog.title}</div>
                 <div className='flex flex-row items-center justify-between w-inherit max-h-[20px] my-2 opacity-50'>

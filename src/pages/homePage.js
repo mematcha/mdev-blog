@@ -67,11 +67,6 @@ function HomePage() {
             {blogs.map((blog,index)=>(
               <BlogCardNew key={"blogCard"+index}blog={blog} handleOnClick={handleOnClick}></BlogCardNew>
             ))}
-            {/* <BlogCardNew handleOnClick={handleOnClick}></BlogCardNew>
-            <BlogCardNew handleOnClick={handleOnClick}></BlogCardNew>
-            <BlogCardNew handleOnClick={handleOnClick}></BlogCardNew>
-            <BlogCardNew handleOnClick={handleOnClick}></BlogCardNew>
-            <BlogCardNew handleOnClick={handleOnClick}></BlogCardNew> */}
           </div>
         </div>
       </div>

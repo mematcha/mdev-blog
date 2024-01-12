@@ -33,10 +33,10 @@ function MainHeader() {
         <Link to="/about-me">
           <span className="px-2">About Me</span>
         </Link>
-        <Link to="/other-projects">
+        <Link to="/my-projects">
           {" "}
           <span className="px-2 cursor-not-allowed pointer-events-none">
-            Other Projects
+            My Projects
           </span>
         </Link>
         {/* <span className="px-2">Portfolio</span> */}
