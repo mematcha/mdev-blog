@@ -5,18 +5,20 @@ import UserLogoWhite from "../../assets/userLogoDefault.svg";
 import { DeviceContext } from "../../DeviceContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../../ThemeContext";
 
 //Header Method
 function MainHeader() {
   const deviceContextVal = useContext(DeviceContext);
-
+  const {theme}=useContext(ThemeContext);
+  
   return (
     //Main Header Class
     <div
-      className={`text-3xl h-12 p-1
-        ${deviceContextVal === "mobile" ? "w-[90%]" : "w-[80%]"} 
-        bg-white
+      className={`text-3xl h-12 p-1 w-[100%]
+        ${deviceContextVal === "mobile" ? "px-[5%]" : "px-[10%]"} 
         flex items-center justify-between`}
+        style={{backgroundColor:`${theme=="light"?"#fff":"#1e1e1e"}`}}
     >
       <Link to="/">
         <img src={LogoBlack} alt="logo" className="w-8 h-8"></img>

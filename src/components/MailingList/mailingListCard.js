@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { DeviceContext } from "../DeviceContext";
+import { DeviceContext } from "../../DeviceContext";
 
 function MLCard() {
   const deviceContextVal = useContext(DeviceContext);
