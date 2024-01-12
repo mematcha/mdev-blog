@@ -25,7 +25,7 @@ function AboutMe() {
         "Progressive Web Apps (PWA)",
       ],
     },
-    { title: "Databases", courses: ["MySQL", "Microsoft SQL Server"] },
+    { title: "Databases", courses: ["MongoDB", "MySQL", "Microsoft SQL Server"] },
     {
       title: "Frameworks / Libraries",
       courses: [
@@ -40,17 +40,22 @@ function AboutMe() {
     },
     { title: "Version Control", courses: ["Azure DevOps", "Git", "GitHub"] },
   ];
-  const aboutMeArr=['About Me','Technical Skills','Why MDev.Blog?','Resume'];
+  const aboutMeArr = [
+    "About Me",
+    "Technical Skills",
+    "Why MDev.Blog?",
+    "Resume",
+  ];
 
-  const openLink=(link)=>{
-    if(link=="linkedin"){
-      window.open("https://www.linkedin.com/in/sathwik-matcha/","_blank");
+  const openLink = (link) => {
+    if (link == "linkedin") {
+      window.open("https://www.linkedin.com/in/sathwik-matcha/", "_blank");
     }
-    if(link=="github"){
-      window.open("https://github.com/mematcha","_blank");
+    if (link == "github") {
+      window.open("https://github.com/mematcha", "_blank");
     }
-    if(link=="kaggle"){
-      window.open("https://www.kaggle.com/mematcha","_blank");
+    if (link == "kaggle") {
+      window.open("https://www.kaggle.com/mematcha", "_blank");
     }
   };
 
@@ -61,7 +66,7 @@ function AboutMe() {
           <MainHeader></MainHeader>
         </div>
         <div className="flex flex-row ml-[10%] mr-[0%] text-justify">
-          <div className="w-[70%] relative top-24">
+          <div className="w-[90%] relative top-24">
             <div className="mb-4">
               <div className="mb-4 font-bold text-[24px]">About Me</div>
               <div>
@@ -118,7 +123,10 @@ function AboutMe() {
             </div>
             <div>
               <div className="mb-4 font-bold text-[24px]">Resume</div>
-              <div className="p-4 mb-4 border-2 rounded cursor-pointer" onClick={openResume}>
+              <div
+                className="p-4 mb-4 border-2 rounded cursor-pointer"
+                onClick={openResume}
+              >
                 View Resume
               </div>
             </div>
@@ -129,16 +137,6 @@ function AboutMe() {
               <div>Github</div>
               <div>Kaggle</div>
             </div> */}
-          </div>
-          <div className="w-[20%] mr-[5%] fixed right-0 top-12 flex flex-col">
-            <SideCard data={aboutMeArr}></SideCard>
-            <div className="p-4 flex flex-wrap border-l-2 border-black ml-[16px]">
-                <div className="icon-linkedin px-[20%] py-[20px] cursor-pointer" onClick={()=>{openLink('linkedin')}}></div>
-                <div className="icon-twitter px-[20%] py-[20px] cursor-pointer" onClick={()=>{openLink('twitter')}}></div>
-                <div className="icon-github px-[20%] py-[20px] cursor-pointer" onClick={()=>{openLink('github')}}></div>
-                <div className="icon-mail px-[20%] py-[20px] cursor-pointer" onClick={()=>{openLink('mail')}}></div>
-                <div className="icon-kaggle px-[20%] py-[20px] cursor-pointer" onClick={()=>{openLink('kaggle')}}></div>
-            </div>
           </div>
         </div>
       </div>

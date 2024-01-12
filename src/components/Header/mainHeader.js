@@ -22,10 +22,10 @@ function MainHeader() {
         <img src={LogoBlack} alt="logo" className="w-8 h-8"></img>
       </Link>
       <div className="flex font-bold flex-row text-[12px] items-center">
-        <span className="px-2">User</span>
-        <span className="px-2">Series</span>
+        <Link to="/user"><span className="px-2">User</span></Link>
+        <span className="px-2 cursor-not-allowed pointer-events-none">Series</span>
         <Link to="/about-me"><span className="px-2">About Me</span></Link>
-        <span className="px-2">Other Projects</span>
+        <span className="px-2 cursor-not-allowed pointer-events-none">Other Projects</span>
         {/* <span className="px-2">Portfolio</span> */}
         {/* <img src={UserLogoWhite} alt="logo" className="w-6 h-6 ml-2"></img> */}
       </div>
