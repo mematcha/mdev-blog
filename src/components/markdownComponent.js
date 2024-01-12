@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import "./markdownBit.scss";
 import YouTubeEmbed from "react-youtube";
 import "./markdownComponent.scss";
+import { getImageBuffer, uploadImage } from "../apis/apiCatalog";
 
 // Import the Slate editor factory.
 import {
@@ -408,6 +409,31 @@ function MarkDownComponent({ sendTextData, isEdit }) {
     },
   };
 
+  const loadImage=()=>{
+    const fileInput = document.getElementsByClassName('file-input')[0];
+    // console.log(fileInput);
+    fileInput.click();
+  };
+
+  const handleImageSelection=async (event)=>{
+    const img = event.target.files[0];
+    event.target.value='';
+    uploadImage(img).then(result=>{
+      getImageBuffer(result.data.id).then(imageBuffer=>{
+        Transforms.insertNodes(editor, {
+          type: "image",
+          children: [{ text: "" }],
+          url: "data:image/jpg;base64, "+ imageBuffer.data,
+        });
+        Transforms.insertNodes(editor, {
+          children: [{ text: "" }],
+          type: "paragraph",
+        });
+      })
+    });
+    
+  };
+
   return (
     <>
       {true && (
@@ -435,7 +461,10 @@ function MarkDownComponent({ sendTextData, isEdit }) {
               <span className="underline text-[22px] leading-[24px] cursor-pointer mx-2">
                 U
               </span>
-              {/* <span className="icon-image cursor-pointer mx-2"></span> */}
+              <span className="icon-image cursor-pointer mx-2" onClick={()=>{
+                loadImage();
+              }}></span>
+              <input type="file" className="hidden file-input" accept="image/*" onChange={(event)=>{handleImageSelection(event);}}></input> 
               {/* <span className="icon-gif cursor-pointer mx-2"></span> */}
               {/* <span
                 className="icon-link cursor-pointer mx-2"

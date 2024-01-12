@@ -7,6 +7,8 @@ import { useContext, useState, useRef, useEffect } from "react";
 import SeriesModal from "../components/Series/seriesModalPopup";
 import SeriesOverall from "../components/Series/seriesModalOverall";
 
+import API from "../apis/apiCatalog";
+
 function CreateBlog() {
   const deviceContextVal = useContext(DeviceContext);
 
@@ -68,7 +70,12 @@ function CreateBlog() {
   const closeSeriesModal = () => {
     toggleSeriesModal(false);
   };
+  
+  useEffect(()=>{
+    API.showData("blogs");
+  },[]);
 
+  //reload control 
   // useEffect(() => {
   //   const handleBeforeUnload = (event) => {
   //     const message =
@@ -212,13 +219,22 @@ function CreateBlog() {
                 Edit
               </button>
               <button
-                className="px-2  h-[40px] bg-slate-100 border-gray-200"
+                className="px-2  h-[40px] mr-2 bg-slate-100 border-gray-200"
                 onClick={() => {
                   setIsEdit(false);
                   console.log(textData);
                 }}
               >
                 Preview
+              </button>
+              <button
+                className="px-2 h-[40px] bg-green-100 border-gray-200"
+                onClick={() => {
+                  setIsEdit(false);
+                  console.log(textData);
+                }}
+              >
+                Publish
               </button>
             </div>
           </div>
