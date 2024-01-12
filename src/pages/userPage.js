@@ -97,7 +97,6 @@ function UserPage() {
     localStorage.setItem("theme", themearg);
     app.setAttribute("theme", themearg);
   };
-  console.log(theme);
   return (
     <div className="flex flex-col">
       <div
