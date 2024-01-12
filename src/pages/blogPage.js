@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { DeviceContext } from "../DeviceContext";
-import MainHeader from "../components/mainHeader";
+import MainHeader from "../components/Header/mainHeader";
 import Poster1Img from "../assets/4_qsasa144.jpg";
 
 function BlogPage(props) {
@@ -13,7 +13,7 @@ function BlogPage(props) {
       </div>
       <div
         className={`flex justify-center flex-col body ${
-          deviceContextVal === "mobile" ? "mx-[10%]" : "mx-[20%]"
+          deviceContextVal === "mobile" ? "mx-[10%]" : "ml-[05%] mr-[25%]"
         }`}
       >
         <div>

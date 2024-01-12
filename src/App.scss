@@ -4,6 +4,17 @@ $font-tnr:'Times New Roman';
 $font-arial:'Arial';
 $font-verdana:'Verdana';
 
+$icon-large:64px;
+$icon-medium:48px;
+
+$theme-light-bg:#fff;
+$theme-light-text:#000;
+$theme-light-text-2:#eee;
+
+$theme-dark-bg: #1e1e1e;
+$theme-dark-text:#eee;
+$theme-dark-text-2:#f15b26;
+
 .App {
     display: flex;
     flex-direction: column;
@@ -15,11 +26,23 @@ input{
 body{
   font-family: $font-verdana!important;
 }
+.cursor-pointer {
+  cursor: pointer;
+}
 .body {
     // height:2000px;
     position: relative;
     top: 48px;
     margin-bottom: 80px;
+}
+.arrow-right {
+  position: absolute;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 10px 8px 0;
+  border-color: transparent rgb(241, 245, 249) transparent transparent;
 }
 .body-center {
     width: 100%;
@@ -27,7 +50,96 @@ body{
     display: flex;
     justify-content: space-around;
 }
-
+.App[theme='dark']{
+  background-color: $theme-dark-bg;
+  color: $theme-dark-text;
+}
+.App[theme='light']{
+  background-color: $theme-light-bg;
+  color:$theme-light-text;
+}
+.icon{
+  &-email::before {
+    content: '\1F4E7'; /* Unicode character for email envelope */
+    font-size: 2rem;
+    color: #007bff; /* Change the color as needed */
+  }
+  &-linkedin{
+    background: url('./assets/linkedin-box-fill.svg') no-repeat;
+    width:32px;
+    height:32px;
+  }
+  &-twitter{
+    background: url('./assets/twitter-x-box-fill.svg') no-repeat;
+    width:32px;
+    height:32px;
+  }
+  &-github{
+    background: url('./assets/github-fill.svg') no-repeat;
+    width:32px;
+    height:32px;
+  }
+  &-mail{
+    background: url('./assets/mail-fill.svg') no-repeat;
+    width:32px;
+    height:32px;
+  }
+  &-kaggle{
+    background: url('./assets/kaggle-icon.svg') no-repeat;
+    width:32px;
+    height: 32px;
+  }
+  &-sunlight{
+    background: url('./assets/sunlight.svg') no-repeat;
+    width:32px;
+    height: 32px;
+  }
+  &-dark{
+    background: url('./assets/darkmoon.svg') no-repeat;
+    width:32px;
+    height: 32px;
+  }
+  &-settings{
+    background: url('./assets/settings.svg') no-repeat;
+    width:32px;
+    height: 32px;
+  }
+  &-check{
+    background: url('./assets/check.svg') no-repeat;
+    width:16px;
+    height: 16px;
+  }
+  &-image{
+    background: url('./assets/image_outline.svg') no-repeat;
+    width:24px;
+    height: 24px;
+  }
+  &-link{
+    background: url('./assets/link.svg') no-repeat;
+    width:24px;
+    height: 24px;
+  }
+  &-bulleted{
+    background: url('./assets/bulletlist.svg') no-repeat;
+    width:24px;
+    height: 24px;
+  }
+  &-gif{
+    background: url('./assets/gif.svg') no-repeat;
+    width:24px;
+    height: 24px;
+  }
+  &-codeblock{
+    background: url('./assets/code_block.svg') no-repeat;
+    width:24px;
+    height: 24px;
+  }
+  &-carousel{
+    background: url('./assets/carousel.svg') no-repeat;
+    width:24px;
+    height: 24px;
+  }
+}
 .dropzone {
     border: 2px dashed #ccc;
     padding: 20px;
@@ -39,10 +151,10 @@ body{
     justify-content: center;
   }
   
-  .dropzone img {
-    max-width: 100%;
-    max-height: 100%;
-  }
+.dropzone img {
+  max-width: 100%;
+  max-height: 100%;
+}
 
 // .list-menu {
 //     li {

@@ -1,16 +1,13 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
-const ThemeContext = createContext();
+const ThemeContext = createContext({});
 
 const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState("light");
   
-    function setNewTheme(theme) {
+    const setNewTheme=(theme)=> {
       if(theme=="dark"){
         setTheme("dark");
-      }
-      else if(theme=="dim"){
-        setTheme("dim");
       }
       else if(theme=="light"){
         setTheme("light");
@@ -19,9 +16,15 @@ const ThemeProvider = ({ children }) => {
         setTheme("light");
       }
     }
-  
+    
+    useEffect(()=>{
+      const themeValue = localStorage.getItem('theme');
+      setNewTheme(themeValue);
+    },[]);
+
+
     return (
-      <ThemeContext.Provider value={theme}>
+      <ThemeContext.Provider value={{theme,setNewTheme}}>
         {children}
       </ThemeContext.Provider>
     );
