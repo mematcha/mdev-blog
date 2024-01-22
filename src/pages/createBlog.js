@@ -18,7 +18,7 @@ function CreateBlog() {
   const [imgSource, setImgSource] = useState(null);
   const [blogTagsArr, setBlogTagsArr] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [seriesText, setSeriesText] = useState("Add Series");
+  const [seriesText, setSeriesText] = useState("");
   const [isSeriesModalOpen, toggleSeriesModal] = useState(false);
   const [isSeriesOverallOpen, toggleSeriesOverall] = useState(false);
   const [blogTitle, setBlogTitle] = useState("");
@@ -70,12 +70,8 @@ function CreateBlog() {
   const closeSeriesModal = () => {
     toggleSeriesModal(false);
   };
-  
-  useEffect(()=>{
-    API.showData("blogs");
-  },[]);
 
-  //reload control 
+  //reload control
   // useEffect(() => {
   //   const handleBeforeUnload = (event) => {
   //     const message =
@@ -180,7 +176,40 @@ function CreateBlog() {
       blogTag.isInput = false;
     }
   };
-
+  const uploadBlogData = () => {
+    setIsEdit(false);
+    const blogMetaData = {
+      title: blogTitle,
+      cover:imgSource,
+      tags: blogTagsArr,
+      isSeriesAttached: false,
+      series: {
+        name: seriesText,
+        index: 0,
+      },
+      content: textData,
+    };
+    let allowCode=0;
+    if(blogMetaData){
+      if(blogMetaData.title.trim()==""){
+        allowCode=0
+      }
+      else if(blogMetaData.title.length<4){
+        allowCode=0
+      }
+      else if(blogMetaData.content.length==0){
+        allowCode=0
+      }
+      else{
+        allowCode=1
+      }
+    }
+    if(allowCode==1){
+      console.log(blogMetaData);
+      API.publishBlog(blogMetaData);
+      console.log("Blog Published!");
+    }
+  };
   return (
     <>
       <div className="flex flex-col">
@@ -190,13 +219,21 @@ function CreateBlog() {
         <div
           className={`flex flex-col relative left-0  mt-12 ${
             deviceContextVal === "mobile"
-              ? "mr-[15%] ml-[15%]"
+              ? "mr-[05%] ml-[05%]"
               : "mr-[10%] ml-[10%]"
           } text-[16px]`}
         >
-          <div className="flex w-[80%] text-[12px] font-bold fixed z-5 py-4 bg-white flex-row justify-between">
+          <div
+            className={`flex text-[12px] font-bold ${
+              deviceContextVal === "mobile"
+                ? "w-[90%]"
+                : "w-[80%]"
+            } fixed z-5 py-4 bg-white flex-row justify-between`}
+          >
             <button
-              className={`px-2 py-1 h-[40px] bg-slate-100 border-gray-200 ${!isEdit?"opacity-0":""}`}
+              className={`px-2 py-1 mr-2 h-[40px] bg-slate-100 border-gray-200 ${
+                !isEdit ? "opacity-0" : ""
+              }`}
               onClick={openModal}
             >
               Add Cover
@@ -222,7 +259,6 @@ function CreateBlog() {
                 className="px-2  h-[40px] mr-2 bg-slate-100 border-gray-200"
                 onClick={() => {
                   setIsEdit(false);
-                  console.log(textData);
                 }}
               >
                 Preview
@@ -230,15 +266,14 @@ function CreateBlog() {
               <button
                 className="px-2 h-[40px] bg-green-100 border-gray-200"
                 onClick={() => {
-                  setIsEdit(false);
-                  console.log(textData);
+                  uploadBlogData();
                 }}
               >
                 Publish
               </button>
             </div>
           </div>
-          <div className="relative w-[100%] top-20 z-0">
+          <div className="relative top-20 z-0">
             <div className="flex justify-around align-center bg-slate-100">
               {imgSource == null ? (
                 <></>
@@ -271,6 +306,7 @@ function CreateBlog() {
                 >
                   <div
                     ref={divRef}
+                    key={"tag"+index}
                     className={`flex flex-row items-center ${
                       blogTag.isInput || isEdit == false ? "hidden" : ""
                     }`}
@@ -292,6 +328,7 @@ function CreateBlog() {
                     ></input>
                   </div>
                   <div
+                    key={"span"+index}
                     className={`${
                       blogTag.isInput || isEdit == false ? "" : "hidden"
                     }`}
@@ -313,7 +350,7 @@ function CreateBlog() {
               </li>
               <div
                 className={`p-2 bg-slate-200 w-fit border-16 rounded font-verdana text-[12px] font-bold" ${
-                  seriesText == "Add Series" && !isEdit ? "hidden" : ""
+                  seriesText == "" && !isEdit ? "hidden" : ""
                 }
                 ${blogTagsArr.length == 0 && !isEdit ? "" : "ml-2"}`}
               >
@@ -324,14 +361,14 @@ function CreateBlog() {
                       openSeriesOverall();
                     }}
                   >
-                    {seriesText}
+                    {seriesText==""?"Add Series":seriesText}
                   </div>
                 )}
               </div>
             </ul>
           </div>
         </div>
-        
+
         <div
           className={`${
             deviceContextVal === "mobile" ? "mx-[05%]" : "ml-[10%] mr-[10%]"

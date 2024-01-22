@@ -1,20 +1,31 @@
-function LoginPage(){
+// import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
+function LoginPage() {
+  const handleCallbackResponse = (response) => {
+    console.log(response.credential);
+    let userObject = jwtDecode(response.credential);
+    console.log(userObject);
+  };
 
-    return(
-        <div className="w-[80%] flex flex-col mx-[10%]">
-            <div className="px-[20%] py-[50px] flex flex-col">
-                <span>Email ID</span>
-                <input></input>
-            </div>
-            <div className="px-[20%] py-[50px] flex flex-col">
-                <span>Password</span>
-                <input></input>
-            </div>
-            <div className="mx-[20%]">
-                <button className="bg-slate-100 p-4">Login</button>
-            </div>
-        </div>
-    );
+  useEffect(() => {
+     /* global google  */
+    google.accounts.id.initialize({
+      client_id:
+        "602180286704-ttioges3ndc5uo5d2kbpfrsderdin6e2.apps.googleusercontent.com",
+      callback: handleCallbackResponse,
+    });
+    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+      theme: "outline",
+      size: "large",
+    });
+  }, []);
+
+  return (
+    <div className="w-[80%] flex flex-col mx-[10%]">
+      <div id="signInDiv"></div>
+    </div>
+  );
 }
 
 export default LoginPage;
