@@ -6,6 +6,7 @@ import "./markdownBit.scss";
 import YouTubeEmbed from "react-youtube";
 import "./markdownComponent.scss";
 import { getImageBuffer, uploadImage } from "../apis/apiCatalog";
+import API from "../apis/apiCatalog";
 
 // Import the Slate editor factory.
 import {
@@ -84,10 +85,12 @@ function MarkDownComponent({ sendTextData, isEdit }) {
 
   const ImageElement = (props) => {
     return (
-      <>
-        <img {...props.attributes} src={props.element.url} alt="Image Not Loaded"></img>
+      <div className="flex flex-row justify-center w-[100%]">
+        <img style={{
+          width:"200px"
+        }} {...props.attributes} src={props.element.url} alt="Image Not Loaded"></img>
         <div className="hidden">{props.children}</div>
-      </>
+      </div>
     );
   };
 
@@ -415,20 +418,22 @@ function MarkDownComponent({ sendTextData, isEdit }) {
   const handleImageSelection=async (event)=>{
     const img = event.target.files[0];
     event.target.value='';
+    //aws upload
+    API.
+    //data:src upload
     uploadImage(img).then(result=>{
-      getImageBuffer(result.data.id).then(imageBuffer=>{
+      if(result && result.data && result.data.url){
         Transforms.insertNodes(editor, {
           type: "image",
           children: [{ text: "" }],
-          url: "data:image/jpg;base64, "+ imageBuffer.data,
+          url: result.data.url,
         });
         Transforms.insertNodes(editor, {
           children: [{ text: "" }],
           type: "paragraph",
         });
-      })
-    });
-    
+      }
+    })
   };
 
   return (
@@ -523,7 +528,7 @@ function MarkDownComponent({ sendTextData, isEdit }) {
               placeholder="Enter your message here..."
               renderElement={renderElement}
               renderLeaf={renderLeaf}
-              contentEditable={isEdit}
+              readOnly={!isEdit}
               value={slateValue}
               style={{ fontFamily: "Verdana" }}
               className="md-note-space outline-none resize-none overflow-y-scroll"

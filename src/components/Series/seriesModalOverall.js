@@ -1,6 +1,10 @@
 import { useContext, useState, useRef } from "react";
+import API from "../../apis/apiCatalog";
 
 const initializeSeries = () => {
+  API.showUserSeries().then(response=>{
+    console.log(response);
+  });
   const dummyArr = [
     {
       title: "Data Science Series",
@@ -94,7 +98,8 @@ function SeriesOverall({ isOpen, onClose, series, selected }) {
               </li>
             ))}
           </ul>
-          <div className="flex justify-end mt-4">
+          <div className="flex justify-between mt-4">
+            <div>Create New Series</div>
             <button
               className="px-2 py-1 bg-slate-200 rounded"
               onClick={() => {
