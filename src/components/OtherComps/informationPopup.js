@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import "./imformationPopup.scss";
+import React, { useState, useEffect } from "react";
+import "./informationPopup.scss";
 
-const InfoPopup = () => {
+const InfoPopup = ({ message }) => {
   const [showPopup, setShowPopup] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowPopup(false);
-    }, 4000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -17,15 +17,19 @@ const InfoPopup = () => {
   };
 
   return (
-    <div className={`info-popup ${showPopup ? 'visible' : 'hidden'}`}>
-      <div className="message">
-        This is an information message.
-        <button onClick={closePopup} className="close-button">
-          Close
-        </button>
-      </div>
-      <div className="progress-loader"></div>
-    </div>
+    <>
+      {showPopup && (
+        <div className={`info-popup`}>
+          <p>{message}</p>
+          {/* <div className="message">
+            <button onClick={closePopup} className="close-button">
+              Close
+            </button>
+          </div> */}
+          {/* <div className="progress-loader"></div> */}
+        </div>
+      )}
+    </>
   );
 };
 

@@ -6,11 +6,13 @@ import { DeviceContext } from "../../DeviceContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../../ThemeContext";
+import DisplayToggle from "./displayToggle";
 
 //Header Method
 function MainHeader() {
   const deviceContextVal = useContext(DeviceContext);
   const { theme } = useContext(ThemeContext);
+  const environment = process.env.REACT_APP_ENV;
 
   return (
     //Main Header Class
@@ -24,9 +26,15 @@ function MainHeader() {
         <img src={LogoBlack} alt="logo" className="w-8 h-8"></img>
       </Link>
       <div className="flex font-bold flex-row text-[12px] items-center">
-        <Link to="/user">
-          <span className="px-2">User</span>
-        </Link>
+        <DisplayToggle></DisplayToggle>
+        {
+          environment=="staging"
+          && (
+            <Link to="/user">
+              <span className="px-2">User</span>
+            </Link>
+          )
+        }
         <span className="px-2 cursor-not-allowed pointer-events-none">
           Series
         </span>

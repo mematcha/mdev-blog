@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { DeviceContext } from '../../DeviceContext';
-
+import moment from 'moment';
 function BlogCardNew({blog,handleOnClick}) {
 
     const deviceContextVal= useContext(DeviceContext);
@@ -12,8 +12,9 @@ function BlogCardNew({blog,handleOnClick}) {
                       justify-center cursor-pointer transition hover:scale-105 duration-300' onClick={handleOnClick}>
             <div className='text-[10px] flex flex-col justify-center w-full'> 
                 <div className='text-[20px] flex items-center my-2 font-bold'>{blog.title}</div>
+                <div className='text-[14px] flex items-center my-2 '>{blog.subText}</div>
                 <div className='flex flex-row items-center justify-between w-inherit max-h-[20px] my-2 opacity-50'>
-                    <div className='text-[10px] flex items-center'>{blog.date}</div>
+                    <div className='text-[10px] flex items-center'>{"Posted on"+" "+moment(Date(blog.created_at)).format("Do MMMM YYYY")}</div>
                 </div>
             </div>
       </div>

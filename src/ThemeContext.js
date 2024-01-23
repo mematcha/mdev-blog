@@ -3,7 +3,10 @@ import React, { createContext, useEffect, useState } from "react";
 const ThemeContext = createContext({});
 
 const ThemeProvider = ({ children }) => {
-    const [theme, setTheme] = useState("light");
+    const [theme, setTheme] = useState(()=>{
+      const theme=localStorage.getItem('theme');
+      return theme || 'light';
+    });
   
     const setNewTheme=(theme)=> {
       if(theme=="dark"){

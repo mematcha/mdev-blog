@@ -4,9 +4,15 @@
   "private": true,
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "@react-oauth/google": "^0.12.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "cross-env": "^7.0.3",
+    "gapi-script": "^1.2.0",
+    "json-decode": "^1.0.1",
+    "jwt-decode": "^4.0.0",
+    "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-lite-youtube-embed": "^2.4.0",
@@ -25,7 +31,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build:dev": "react-scripts build --env=development",
+    "build:staging": "react-scripts build --env=staging",
+    "build:prod": "react-scripts build --env=production",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -46,5 +54,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.2",
+    "env-cmd": "^10.1.0"
   }
 }

@@ -3,15 +3,6 @@ const apiClient = axios.create({
   baseURL: "http://localhost:4000", // Set your base URL here
 });
 
-export const showData = async (data) => {
-  try {
-    const response = await apiClient.get("/users/series");
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching user:", error);
-    throw error; // Re-throw to handle in calling component
-  }
-};
 const convertToBase64 = async(file) => {
   return new Promise((resolve,reject)=>{
     try{
@@ -28,11 +19,43 @@ const convertToBase64 = async(file) => {
   });
 };
 
+export const showUserBlogs = async (data) => {
+  try {
+    const response = await apiClient.get("/users/blogs");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    throw error; // Re-throw to handle in calling component
+  }
+};
+
+export const getAllBlogs = async (data) => {
+  try{
+    const response = await apiClient.get("/get-blogs");
+    return response.data;
+  }
+  catch(error){
+    console.error("Error fetching user:", error);
+    throw error; // Re-throw to handle in calling component
+  }
+}
+
+export const showUserSeries = async(userid) =>{
+  try{
+    const response = await apiClient.get("/users/series");
+    return response.data;
+  }
+  catch(error){
+    console.error("Error fetching user:", error);
+    throw error; // Re-throw to handle in calling component
+  }
+}
+
 export const uploadImage = async (data) => {
   try {
     const formData = new FormData();
     formData.append("image", data);
-    const response = await apiClient.post("images/upload-image", formData);
+    const response = await apiClient.post("/upload-image", formData);
     return response;
   } catch (error) {
     console.error("Error Uploading Image:", error);
@@ -49,5 +72,15 @@ export const getImageBuffer = async (data) => {
     throw err;
   }
 }
+export const publishBlog = async (data) =>{
+  try{
+    const response = await apiClient.post("users/publish",data);
+    return response;
+  }
+  catch(err){
+    console.error("Error Rendering Image: ", err);
+    throw err;
+  }
+};
 
-export default { showData, uploadImage, getImageBuffer };
+export default { showUserBlogs, uploadImage, getImageBuffer, showUserSeries, publishBlog, getAllBlogs };

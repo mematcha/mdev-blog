@@ -3,21 +3,34 @@ import Footer from "../components/OtherComps/footer";
 import MainSearch from "../components/mainSearch";
 import BlogCardNew from "../components/BlogCard/blogCard";
 import { DeviceContext } from '../DeviceContext';
-import { useContext, useEffect  } from 'react';
+import { useContext, useEffect, useState  } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from "../ThemeContext";
-
+import API from "../apis/apiCatalog";
 function HomePage() {
 
-  useEffect(() => {
-    document.title = "Home | mDev";
-  }, []);
+  
+
+  const environment = process.env.REACT_APP_ENV;
 
   const deviceContextVal= useContext(DeviceContext);
+  const [blogsArray, setBlogsArray] = useState([]);
   const navigate = useNavigate();
   const handleOnClick=()=>{
     navigate('/create-blog');
   };
+
+  useEffect(() => {
+    document.title = "Sathwik Matcha | Home";
+
+    API.getAllBlogs().then((result)=>{
+      setBlogsArray(result);
+      console.log(result);
+    });
+    
+
+  }, []);
+
   const blogs = [
     {
       title: "My First Blog Post",
@@ -48,8 +61,9 @@ function HomePage() {
       date: "2023-12-29"
     }
   ];
-  const {theme}=useContext(ThemeContext);
-  console.log(theme);
+
+
+  
   return (
     <>
       <div className="body-center fixed flex justify-center top-0 left-0 shadow z-10">
@@ -60,12 +74,16 @@ function HomePage() {
           deviceContextVal === "mobile" ? "mx-[05%]" : "mx-[10%]"
         }`}
       >
-        <MainSearch></MainSearch>
+        {
+          environment == "staging" && (
+            <MainSearch></MainSearch>
+          )
+        }
         <div className="pb-[60px] flex flex-row">
           {/* <MLCard></MLCard> */}
           <div>
-            {blogs.map((blog,index)=>(
-              <BlogCardNew key={"blogCard"+index}blog={blog} handleOnClick={handleOnClick}></BlogCardNew>
+            {blogsArray.map((blog,index)=>(
+              <BlogCardNew key={"blogCard"+index} blog={blog} handleOnClick={handleOnClick}></BlogCardNew>
             ))}
           </div>
         </div>
