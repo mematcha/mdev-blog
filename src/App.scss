@@ -113,6 +113,8 @@ body{
     background: url('./assets/image_outline.svg') no-repeat;
     width:24px;
     height: 24px;
+    background-color: #eee;
+    border-radius: 6px;
   }
   &-link{
     background: url('./assets/link.svg') no-repeat;
@@ -123,6 +125,8 @@ body{
     background: url('./assets/bulletlist.svg') no-repeat;
     width:24px;
     height: 24px;
+    background-color: #eee;
+    border-radius: 6px;
   }
   &-gif{
     background: url('./assets/gif.svg') no-repeat;
@@ -133,6 +137,8 @@ body{
     background: url('./assets/code_block.svg') no-repeat;
     width:24px;
     height: 24px;
+    background-color: #eee;
+    border-radius: 6px;
   }
   &-carousel{
     background: url('./assets/carousel.svg') no-repeat;

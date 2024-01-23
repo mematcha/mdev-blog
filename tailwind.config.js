@@ -10,6 +10,12 @@ module.exports = {
       },
       zIndex:{
         "5":5
+      },
+      backgroundColor:{
+        "darkTheme":"#1e1e1e"
+      },
+      textColor:{
+        "darkTheme":"#eee"
       }
     },
   },
