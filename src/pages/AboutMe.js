@@ -29,6 +29,8 @@ function AboutMe() {
     {
       title: "Frameworks / Libraries",
       courses: [
+        "Tensorflow",
+        "Pytorch",
         "Swing",
         ".NET MVC",
         "Lucene",
@@ -66,7 +68,7 @@ function AboutMe() {
           <MainHeader></MainHeader>
         </div>
         <div className="flex flex-row ml-[10%] mr-[0%] text-justify">
-          <div className="w-[90%] relative top-24">
+          <div className="w-[90%] pt-24">
             <div className="mb-4">
               <div className="mb-4 font-bold text-[24px]">About Me</div>
               <div>

@@ -1,16 +1,20 @@
+import { useContext } from "react";
+import { ThemeContext } from "../../ThemeContext";
 function CarouselTemplate({data}){
+    const {theme} = useContext(ThemeContext);
+
     return (
-        <div className="bg-white rounded-[10px]">
+        <div className=" rounded-[10px]">
             {/* header element */}
-            <div className="p-2 bg-slate-200 rounded-t-[10px]">
+            <div className={`p-2 rounded-t-[10px] ${theme=="dark"?"bg-gray-600":"bg-slate-200"}`}>
                 {data.title}
             </div>
             <div>
-                <ul className="flex flex-row justify-around p-2">
+                <div className="grid-container">
                     {data.courses.map((point,index)=>(
-                        <li>{point}</li>
+                        <div className="grid-item">{point}</div>
                     ))}
-                </ul>
+                </div>
             </div>
         </div>
     );
