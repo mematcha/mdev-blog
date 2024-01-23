@@ -30,7 +30,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build:dev": "react-scripts build --env=development",
+    "build:staging": "react-scripts build --env=staging",
+    "build:prod": "react-scripts build --env=production",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

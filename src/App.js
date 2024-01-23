@@ -18,7 +18,8 @@ function App() {
   }, []);
   const [theme, setTheme] = useState(() => {
     // Get theme from localStorage or other sources
-    return localStorage.getItem('theme') || 'light';
+    const theme=localStorage.getItem('theme');
+    return theme || 'light';
   });
   return (
     <div className={`App`} theme={theme}>
