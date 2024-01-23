@@ -29,6 +29,17 @@ export const showUserBlogs = async (data) => {
   }
 };
 
+export const getAllBlogs = async (data) => {
+  try{
+    const response = await apiClient.get("/get-blogs");
+    return response.data;
+  }
+  catch(error){
+    console.error("Error fetching user:", error);
+    throw error; // Re-throw to handle in calling component
+  }
+}
+
 export const showUserSeries = async(userid) =>{
   try{
     const response = await apiClient.get("/users/series");
@@ -72,4 +83,4 @@ export const publishBlog = async (data) =>{
   }
 };
 
-export default { showUserBlogs, uploadImage, getImageBuffer, showUserSeries, publishBlog };
+export default { showUserBlogs, uploadImage, getImageBuffer, showUserSeries, publishBlog, getAllBlogs };
