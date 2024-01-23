@@ -37,7 +37,7 @@ function DisplayToggle() {
     <div className="slider-container">
       <label className="switch">
         <input
-          checked={checkBoxVal}
+          defaultChecked={checkBoxVal}
           type="checkbox"
           id="modeToggle"
           onClick={getCheckBoxValue}
