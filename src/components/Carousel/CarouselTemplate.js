@@ -10,11 +10,11 @@ function CarouselTemplate({data}){
                 {data.title}
             </div>
             <div>
-                <ul className="flex flex-row justify-around p-2">
+                <div className="grid-container">
                     {data.courses.map((point,index)=>(
-                        <li>{point}</li>
+                        <div className="grid-item">{point}</div>
                     ))}
-                </ul>
+                </div>
             </div>
         </div>
     );
