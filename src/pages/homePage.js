@@ -49,7 +49,6 @@ function HomePage() {
     }
   ];
   const {theme}=useContext(ThemeContext);
-  console.log(theme);
   return (
     <>
       <div className="body-center fixed flex justify-center top-0 left-0 shadow z-10">
