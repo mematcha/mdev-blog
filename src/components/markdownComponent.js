@@ -152,8 +152,8 @@ function MarkDownComponent({ sendTextData, isEdit }) {
   const BulletElement = (props) => {
     return (
       <div {...props.attributes}>
-        <ul>
-          <li className="bullet-li">{props.children}</li>
+        <ul className="list-disc list-inside">
+          <li className="list-marker-control">{props.children}</li>
         </ul>
       </div>
     )

@@ -8,9 +8,15 @@ function BlogPage(props) {
 
   return (
     <>
-      <div className="body-center fixed flex justify-center top-0 left-0 shadow bg-white z-10">
+      {
+        deviceContextVal!="mobile"
+        &&
+        (
+          <div className="body-center fixed flex justify-center top-0 left-0 shadow bg-white z-10">
         <MainHeader></MainHeader>
       </div>
+        )
+      }
       <div
         className={`flex justify-center flex-col body ${
           deviceContextVal === "mobile" ? "mx-[10%]" : "ml-[05%] mr-[25%]"

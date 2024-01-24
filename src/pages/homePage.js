@@ -16,8 +16,13 @@ function HomePage() {
   const deviceContextVal= useContext(DeviceContext);
   const [blogsArray, setBlogsArray] = useState([]);
   const navigate = useNavigate();
-  const handleOnClick=()=>{
-    navigate('/create-blog');
+  const handleOnClick=(blog)=>{
+    if(blog.path_id){
+      navigate('/blog/'+blog.path_id);
+    }
+    else{
+      navigate('/blog/1');
+    }
   };
 
   useEffect(() => {
@@ -83,12 +88,12 @@ function HomePage() {
           {/* <MLCard></MLCard> */}
           <div>
             {blogsArray.map((blog,index)=>(
-              <BlogCardNew key={"blogCard"+index} blog={blog} handleOnClick={handleOnClick}></BlogCardNew>
+              <BlogCardNew key={"blogCard"+index} blog={blog} handleOnClick={()=>{handleOnClick(blog);}}></BlogCardNew>
             ))}
           </div>
         </div>
       </div>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </>
   );
 }

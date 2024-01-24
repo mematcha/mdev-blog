@@ -27,23 +27,25 @@ function MainHeader() {
       </Link>
       <div className="flex font-bold flex-row text-[12px] items-center">
         <DisplayToggle></DisplayToggle>
-        {
-          environment=="staging"
-          && (
-            <Link to="/user">
-              <span className="px-2">User</span>
-            </Link>
-          )
-        }
-        <span className="px-2 cursor-not-allowed pointer-events-none">
-          Series
-        </span>
+        {environment == "staging" && (
+          <Link to="/user">
+            <span className="px-2">User</span>
+          </Link>
+        )}
+        <Link to="/series">
+          <span className="px-2 cursor-not-allowed pointer-events-none">
+            Series
+          </span>
+        </Link>
         <Link to="/about-me">
           <span className="px-2">About Me</span>
         </Link>
-        <span className="px-2 cursor-not-allowed pointer-events-none">
-          Other Projects
-        </span>
+        <Link to="/my-projects">
+          {" "}
+          <span className="px-2 cursor-not-allowed pointer-events-none">
+            My Projects
+          </span>
+        </Link>
         {/* <span className="px-2">Portfolio</span> */}
         {/* <img src={UserLogoWhite} alt="logo" className="w-6 h-6 ml-2"></img> */}
       </div>
