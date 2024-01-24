@@ -9,6 +9,29 @@ function AboutMe() {
   const openResume = () => {
     window.open(resume_pdf, "_blank");
   };
+  const contactObj = [
+    {
+      title:"Social",
+      courses:[
+        "LinkedIn",
+        "Twitter / X",
+      ]
+    },
+    {
+      title:"Developer",
+      courses:[
+        "Github",
+        "Kaggle",
+        "Leetcode"
+      ]
+    },
+    {
+      title:"Mail",
+      courses:[
+        "matcha.s@northeastern.edu"
+      ]
+    }
+  ]
   const resumeObj = [
     {
       title: "Programming Languages",
@@ -130,6 +153,20 @@ function AboutMe() {
                 onClick={openResume}
               >
                 View Resume
+              </div>
+            </div>
+            <div>
+              <div className="mb-4 font-bold text-[24px]">Contact</div>
+
+              <div>
+                <CarouselGeneral
+                  element={<CarouselTemplate></CarouselTemplate>}
+                  data={contactObj}
+                  settings={{
+                    showDots: true,
+                    showArrows: true,
+                  }}
+                ></CarouselGeneral>
               </div>
             </div>
             {/* <div>

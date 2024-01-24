@@ -9,7 +9,28 @@ const PROJECTS_LIST = [
     description:
       "A Blog focused on Software Development and Deep Learning, with a focus on presenting content in an organized manner",
     url: "https://github.com/mematcha/mdev-blog",
-    status: "In Progress",
+    status: "Completed",
+  },
+  {
+    title: "Amazon Reviews Dataset Analysis",
+    description:
+      "An Web Application focused on providing real-time updates on sports with historical stats and match predictions.",
+    url: "https://github.com/mematcha/nfl-updates-app",
+    status: "Completed",
+  },
+  {
+    title: "Weather Forecast Analysis",
+    description:
+      "An Web Application focused on providing real-time updates on sports with historical stats and match predictions.",
+    url: "https://github.com/mematcha/nfl-updates-app",
+    status: "Completed",
+  },
+  {
+    title: "Parallel Program Implementation",
+    description:
+      "An Web Application focused on providing real-time updates on sports with historical stats and match predictions.",
+    url: "https://github.com/mematcha/nfl-updates-app",
+    status: "Completed",
   },
   {
     title: "Basá App",
@@ -37,12 +58,13 @@ const PROJECTS_LIST = [
     description:
       "A platform for UX/UI Designers and Developers to interact, integrate and build applications at ease using AI tools with guidelines on coding standards, color and UX theory.  ",
     url: "https://github.com/mematcha/nfl-updates-app",
-    status: "Need to Begin Actually",
+    status: "Need to Begin",
   },
 ];
 
 function OtherProjects() {
   const { theme, setNewTheme } = useContext(ThemeContext);
+  const deviceContextVal = useContext(DeviceContext);
 
   useEffect(() => {
     document.title = "My Projects | mDev";
@@ -60,21 +82,28 @@ function OtherProjects() {
       >
         <MainHeader></MainHeader>
       </div>
-      <div className="relative top-20 ml-[10%] mr-[10%] mb-[100px]">
+      <div className={`slider-project-status flex flex-row justify-around mb-4 p-2 fixed top-[48px]  w-[100%] z-5 ${theme=="dark"?"bg-darkTheme":"bg-white"}`}>
+        <span className="p-2 bg-red-500">Planning</span>
+        <span className="p-2 bg-yellow-500">In Progress</span>
+        <span className="p-2 bg-green-500">Completed</span>
+      </div>
+      <div className="relative pt-40 pb-[-10] ml-[10%] mr-[10%] mb-[100px]">
         {projectsList.map((project) => (
           <div
             className={`p-2 mb-2 cursor-pointer transition hover:scale-105 duration-300 ${
               project.status == "In Progress"
-                ? "bg-yellow-200"
+                ? "bg-yellow-500"
                 : project.status == "Need to Begin"
-                ? "bg-red-100"
-                : "bg-slate-100"
+                ? "bg-red-500"
+                : project.status == "Completed"
+                ? "bg-green-500"
+                : "bg-slate-300"
             }`}
             onClick={(event) => {
               handleClick(project.url);
             }}
           >
-            <span>{project.title}</span>
+            <span className="font-bold">{project.title}</span>
             <p>{project.description}</p>
           </div>
         ))}
