@@ -11,10 +11,11 @@ function AboutMe() {
   };
   const contactObj = [
     {
-      title:"Social",
+      title:"Social & Email",
       courses:[
         "LinkedIn",
-        "Twitter / X",
+        "Threads",
+        "matcha.s@northeastern.edu"
       ]
     },
     {
@@ -23,12 +24,6 @@ function AboutMe() {
         "Github",
         "Kaggle",
         "Leetcode"
-      ]
-    },
-    {
-      title:"Mail",
-      courses:[
-        "matcha.s@northeastern.edu"
       ]
     }
   ]

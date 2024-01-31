@@ -411,6 +411,13 @@ function CreateBlog() {
           <MarkDownComponent
             sendTextData={handleTextData}
             isEdit={isEdit}
+            isPresentMode={false}
+            initialContent={[
+              {
+                type: "paragraph",
+                children: [{ text: "" }],
+              },
+            ]}
           ></MarkDownComponent>
         </div>
       </div>
