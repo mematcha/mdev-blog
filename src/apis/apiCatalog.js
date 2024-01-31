@@ -62,6 +62,7 @@ export const uploadImage = async (data) => {
     throw error;
   }
 };
+
 export const getImageBuffer = async (data) => {
   try{
     const bufferImg = await apiClient.get("images/get-image-buffer",{ params: { id: data } });
@@ -72,6 +73,7 @@ export const getImageBuffer = async (data) => {
     throw err;
   }
 }
+
 export const publishBlog = async (data) =>{
   try{
     const response = await apiClient.post("users/publish",data);
@@ -83,4 +85,59 @@ export const publishBlog = async (data) =>{
   }
 };
 
-export default { showUserBlogs, uploadImage, getImageBuffer, showUserSeries, publishBlog, getAllBlogs };
+export const createNewSeries = async (data) => {
+  try{
+    const response = await apiClient.post("users/create-series",data);
+    return response;
+  }
+  catch(err){
+    console.error("Error Rendering Image: ", err);
+    throw err;
+  }
+};
+
+export const checkSeriesByName = async (data) => {
+  try{
+    const response = await apiClient.post("users/check-new-series",data);
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+};
+
+export const getAllSeries = async (data) =>{
+  try{
+    const response = await apiClient.get("/series");
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+};
+
+export const showBlogById = async (data) =>{
+  try{
+    const response = await apiClient.get(`/get-blog/${data.id}`);
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+};
+
+export default {
+  showUserBlogs,
+  uploadImage,
+  getImageBuffer,
+  showUserSeries,
+  publishBlog,
+  getAllBlogs,
+  createNewSeries,
+  checkSeriesByName,
+  getAllSeries,
+  showBlogById
+};
