@@ -3,7 +3,7 @@ import { useContext } from "react";
 
 function Footer() {
   
-  const deviceContextVal = useContext(DeviceContext);
+  const { deviceType, role } = useContext(DeviceContext);
 
   return (
     <div
@@ -11,14 +11,14 @@ function Footer() {
                       bottom-0 left-0 w-full 
                       bg-black shadow 
                       flex items-center justify-center px-12 py-6 ${
-                        deviceContextVal === "mobile" ? "text-[8px] hidden" : "text-xs"
+                        deviceType === "mobile" ? "text-[8px] hidden" : "text-xs"
                       }`}
     >
       <div className={`text-slate-500/75 flex justify-center ${
-                        deviceContextVal === "mobile" ? "flex-col text-center" : "flex-row"
+                        deviceType === "mobile" ? "flex-col text-center" : "flex-row"
                       }`}>
         <div className={`px-4 ${
-                        deviceContextVal === "mobile" ? "py-4" : "py-6"
+                        deviceType === "mobile" ? "py-4" : "py-6"
                       }`}>
           <ul>
             <li className="mb-1 cursor-pointer">About Me</li>
@@ -28,7 +28,7 @@ function Footer() {
         </div>
 
         <div className={`px-4  ${
-                        deviceContextVal === "mobile" ? "border-y py-4" : "border-x py-6"
+                        deviceType === "mobile" ? "border-y py-4" : "border-x py-6"
                       } border-solid border-gray-500/25`}>
           <ul>
             <li className="mb-1 cursor-pointer">Want to connect?</li>
@@ -36,7 +36,7 @@ function Footer() {
           </ul>
         </div>
         <div className={`px-4 ${
-                        deviceContextVal === "mobile" ? "py-4" : "py-6"
+                        deviceType === "mobile" ? "py-4" : "py-6"
                       }`}>
           <ul>
             <li className="mb-1 cursor-pointer">Licenses</li>

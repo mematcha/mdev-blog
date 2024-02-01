@@ -1,6 +1,6 @@
 import "./mainHeader.scss";
 import LogoTransparent from "../../assets/Asset 6.svg";
-import LogoBlack from "../../assets/logo_v2.svg";
+import LogoBlack from "../../assets/Asset 24.svg";
 import UserLogoWhite from "../../assets/userLogoDefault.svg";
 import { DeviceContext } from "../../DeviceContext";
 import { useContext } from "react";
@@ -10,7 +10,7 @@ import DisplayToggle from "./displayToggle";
 
 //Header Method
 function MainHeader() {
-  const deviceContextVal = useContext(DeviceContext);
+  const { deviceType, role } = useContext(DeviceContext);
   const { theme } = useContext(ThemeContext);
   const environment = process.env.REACT_APP_ENV;
 
@@ -18,12 +18,12 @@ function MainHeader() {
     //Main Header Class
     <div
       className={`text-3xl h-12 p-1 w-[100%]
-        ${deviceContextVal === "mobile" ? "px-[5%]" : "px-[10%]"} 
+        ${deviceType === "mobile" ? "px-[5%]" : "px-[10%]"} 
         flex items-center justify-between`}
       style={{ backgroundColor: `${theme == "light" ? "#fff" : "#1e1e1e"}` }}
     >
       <Link to="/">
-        <img src={LogoBlack} alt="logo" className="w-8 h-8"></img>
+        <img src={LogoBlack} alt="logo" className="w-14"></img>
       </Link>
       <div className="flex font-bold flex-row text-[12px] items-center">
         <DisplayToggle></DisplayToggle>

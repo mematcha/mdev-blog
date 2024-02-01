@@ -31,7 +31,9 @@ export const showUserBlogs = async (data) => {
 
 export const getAllBlogs = async (data) => {
   try{
-    const response = await apiClient.get("/get-blogs");
+    const response = await apiClient.get("/get-blogs", {
+      params: { query: data }
+    });
     return response.data;
   }
   catch(error){
@@ -62,6 +64,7 @@ export const uploadImage = async (data) => {
     throw error;
   }
 };
+
 export const getImageBuffer = async (data) => {
   try{
     const bufferImg = await apiClient.get("images/get-image-buffer",{ params: { id: data } });
@@ -72,6 +75,7 @@ export const getImageBuffer = async (data) => {
     throw err;
   }
 }
+
 export const publishBlog = async (data) =>{
   try{
     const response = await apiClient.post("users/publish",data);
@@ -83,4 +87,131 @@ export const publishBlog = async (data) =>{
   }
 };
 
-export default { showUserBlogs, uploadImage, getImageBuffer, showUserSeries, publishBlog, getAllBlogs };
+export const createNewSeries = async (data) => {
+  try{
+    const response = await apiClient.post("users/create-series",data);
+    return response;
+  }
+  catch(err){
+    console.error("Error Rendering Image: ", err);
+    throw err;
+  }
+};
+
+export const checkSeriesByName = async (data) => {
+  try{
+    const response = await apiClient.post("users/check-new-series",data);
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+};
+
+export const getAllSeries = async (data) =>{
+  try{
+    const response = await apiClient.get("/series");
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+};
+
+export const showBlogById = async (data) =>{
+  try{
+    const response = await apiClient.get(`/get-blog/${data.id}`);
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+};
+
+export const getBlogsInSeries = async (data) =>{
+  try{
+    const response = await apiClient.get(`/series-blogs/${data.series}`);
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+}
+
+export const getBlogsNotInSeries = async (data) =>{
+  try{
+    const response = await apiClient.get(`/blogs-no-series`,{ params: {query:data} });
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+};
+
+export const addBlogToSeries = async (data) => {
+  try{
+    const response = await apiClient.post(`/add-blog-to-series`,data);
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+};
+
+export const generateGoogleToken = async (data) =>{
+  try{
+    const response = await apiClient.post(`/generate-google-token`,{token:data});
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+};
+
+export const generateRefreshToken = async (data) =>{
+  try{
+    const response = await apiClient.post(`/generate-token`,{type:"refresh"});
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+};
+
+export const generateAccessToken = async (data,accessToken='') =>{
+  try{
+    const response = await apiClient.post("/generate-token",{type:"access",token:data,accessToken:accessToken});
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+};
+
+export default {
+  showUserBlogs,
+  generateRefreshToken,
+  generateAccessToken,
+  uploadImage,
+  getImageBuffer,
+  showUserSeries,
+  publishBlog,
+  getAllBlogs,
+  createNewSeries,
+  checkSeriesByName,
+  getAllSeries,
+  showBlogById,
+  getBlogsInSeries,
+  getBlogsNotInSeries,
+  addBlogToSeries,
+  generateGoogleToken
+};

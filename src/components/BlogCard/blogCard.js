@@ -3,7 +3,7 @@ import { DeviceContext } from '../../DeviceContext';
 import moment from 'moment';
 function BlogCardNew({blog,handleOnClick}) {
 
-    const deviceContextVal= useContext(DeviceContext);
+    const { deviceType, role }= useContext(DeviceContext);
 
     return (
       //Main Header Class

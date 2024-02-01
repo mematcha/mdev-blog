@@ -44,7 +44,7 @@ const PROJECTS_LIST = [
     description:
       "An Web Application focused on providing real-time updates on sports with historical stats and match predictions.",
     url: "https://github.com/mematcha/nfl-updates-app",
-    status: "Need to Begin",
+    status: "Planning",
   },
   {
     title: "Neosheets",
@@ -58,14 +58,14 @@ const PROJECTS_LIST = [
     description:
       "A platform for UX/UI Designers and Developers to interact, integrate and build applications at ease using AI tools with guidelines on coding standards, color and UX theory.  ",
     url: "https://github.com/mematcha/nfl-updates-app",
-    status: "Need to Begin",
+    status: "Planning",
   },
 ];
 
 function OtherProjects() {
   const { theme, setNewTheme } = useContext(ThemeContext);
-  const deviceContextVal = useContext(DeviceContext);
-
+  const { deviceType, role } = useContext(DeviceContext);
+  const [activeState, setActiveState]=useState("");
   useEffect(() => {
     document.title = "My Projects | mDev";
   }, []);
@@ -74,18 +74,25 @@ function OtherProjects() {
   const handleClick = (link) => {
     window.open(link, "_blank");
   };
+
+  const activate = (state)=>{
+    setActiveState(state);
+    const newProjectsList = PROJECTS_LIST.filter((project)=>(project.status==state));
+    setProjectsList(newProjectsList);
+  }
+
   return (
     <div className="flex flex-col">
       <div
-        className="body-center fixed flex justify-center top-0 left-0 shadow z-10"
+        className={`body-center fixed flex justify-center top-0 left-0 ${theme=="dark"?"dark-shadow":"shadow"} bg-white z-10`}
         style={{ backgroundColor: `${theme == "light" ? "#fff" : "#1e1e1e"}` }}
       >
         <MainHeader></MainHeader>
       </div>
-      <div className={`slider-project-status flex flex-row justify-around mb-4 p-2 fixed top-[48px]  w-[100%] z-5 ${theme=="dark"?"bg-darkTheme":"bg-white"}`}>
-        <span className="p-2 bg-red-500">Planning</span>
-        <span className="p-2 bg-yellow-500">In Progress</span>
-        <span className="p-2 bg-green-500">Completed</span>
+      <div className={`slider-project-status flex flex-row justify-around mb-4 p-2 fixed top-[48px] shadow w-[100%] z-5 ${theme=="dark"?"bg-darkTheme":"bg-white"}`}>
+        <span className={`p-2 bg-red-500 ${activeState=="Planning"?"underline":""}`} onClick={(e)=>{activate("Planning")}}>Planning</span>
+        <span className={`p-2 bg-yellow-500 ${activeState=="In Progress"?"underline":""}`} onClick={(e)=>{activate("In Progress")}}>In Progress</span>
+        <span className={`p-2 bg-green-500 ${activeState=="Completed"?"underline":""}`} onClick={(e)=>{activate("Completed")}}>Completed</span>
       </div>
       <div className="relative pt-40 pb-[-10] ml-[10%] mr-[10%] mb-[100px]">
         {projectsList.map((project) => (
@@ -93,7 +100,7 @@ function OtherProjects() {
             className={`p-2 mb-2 cursor-pointer transition hover:scale-105 duration-300 ${
               project.status == "In Progress"
                 ? "bg-yellow-500"
-                : project.status == "Need to Begin"
+                : project.status == "Planning"
                 ? "bg-red-500"
                 : project.status == "Completed"
                 ? "bg-green-500"

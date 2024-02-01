@@ -1,10 +1,12 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useRef } from "react";
+import { getRoleAssigned } from "./auth/authenticator";
 
 const DeviceContext = createContext();
 
 const DeviceProvider = ({ children }) => {
+  const roleType= useRef(getRoleAssigned());
   const [deviceType, setDeviceType] = useState(getDeviceType());
-
+  
   function getDeviceType() {
     const width = window.innerWidth;
     if (width <= 768) {
@@ -19,7 +21,7 @@ const DeviceProvider = ({ children }) => {
   const handleResize = () => {
     setDeviceType(getDeviceType());
   };
-
+  
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => {
@@ -28,7 +30,10 @@ const DeviceProvider = ({ children }) => {
   }, []);
 
   return (
-    <DeviceContext.Provider value={deviceType}>
+    <DeviceContext.Provider value={{
+      deviceType:deviceType,
+      role:roleType.current
+    }}>
       {children}
     </DeviceContext.Provider>
   );

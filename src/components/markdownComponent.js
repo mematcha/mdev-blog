@@ -28,15 +28,10 @@ import {
 } from "slate-react";
 import withEmbeds from "./WithEmbeds";
 
-function MarkDownComponent({ sendTextData, isEdit }) {
+function MarkDownComponent({ sendTextData, isEdit, isPresentMode,initialContent }) {
   // const inputRef = useRef(null);
 
-  const initialValue = [
-    {
-      type: "paragraph",
-      children: [{ text: "" }],
-    },
-  ];
+  const initialValue = initialContent;
 
   const [text, setText] = useState("");
   const [slateValue, setSlateValue] = useState([
@@ -127,23 +122,40 @@ function MarkDownComponent({ sendTextData, isEdit }) {
 
   const OtherElement = (props) => {
     return (
-      <div
-        {...props.attributes}
-        className="flex flex-row p-2 rounded-4 border-2 border-slate-200 cursor-pointer select-none items-center bg-slate-100"
-      >
-        <div
-          className="icon-link mr-2"
-          style={{ height: "inherit", minWidth: "48px", minHeight: "48px" }}
-        ></div>
-        <span className="text-[48px] text-slate-200">|</span>
-        <div
-          style={{ userSelect: "none" }}
-          onClick={() => {
-            window.open(props.element.url, "_blank");
+      //Old Style Linking
+      // <div
+      //   {...props.attributes}
+      //   className="flex flex-row p-2 rounded-4 border-2 border-slate-200 cursor-pointer select-none items-center bg-slate-100"
+      // >
+      //   <div
+      //     className="icon-link mr-2"
+      //     style={{ height: "inherit", minWidth: "48px", minHeight: "48px" }}
+      //   ></div>
+      //   <span className="text-[48px] text-slate-200">|</span>
+      //   <div
+      //     style={{ userSelect: "none" }}
+      //     onClick={() => {
+      //       window.open(props.element.url, "_blank");
+      //     }}
+      //   >
+      //     {props.element.url}
+      //   </div>
+      //   <span className="hidden">{props.children}</span>
+      // </div>
+      //NewStyle Linking
+      <div>
+        <a
+          style={{
+            color: "#007bff",
+            textDecoration: "underline",
+            userSelect: "all",
+            cursor:"pointer"
           }}
+          href={props.element.url}
+          onClick={()=>{window.open(props.element.url, "_blank");}}
         >
-          {props.element.url}
-        </div>
+           {props.element.url}
+        </a>
         <span className="hidden">{props.children}</span>
       </div>
     );
@@ -168,9 +180,9 @@ function MarkDownComponent({ sendTextData, isEdit }) {
       case "bullet":
         return <BulletElement {...props} />;
       case "h1":
-        return <h1 {...props.attributes}>{props.children}</h1>;
+        return <h1 {...props.attributes} className="py-[10px]">{props.children}</h1>;
       case "h2":
-        return <h2 {...props.attributes}>{props.children}</h2>;
+        return <h2 {...props.attributes} className="py-[10px]">{props.children}</h2>;
       case "youtube":
         return <YoutubeElement {...props} />;
       case "twitter":
@@ -274,7 +286,6 @@ function MarkDownComponent({ sendTextData, isEdit }) {
               return true;
             } else if (type == "other") {
               event.preventDefault();
-              console.log(match, type, "others");
               Transforms.insertNodes(editor, {
                 children: [{ text: "" }],
                 type: "other",
@@ -440,7 +451,7 @@ function MarkDownComponent({ sendTextData, isEdit }) {
     <>
       {true && (
         <div className="flex flex-col py-4" style={{ fontFamily: "Verdana" }}>
-          {isEdit && (
+          {isEdit && !isPresentMode && (
             <div className="flex flex-row items-center mb-4">
               <span
                 className="text-[22px] leading-[24px] cursor-pointer mr-2"
@@ -513,22 +524,12 @@ function MarkDownComponent({ sendTextData, isEdit }) {
             </div> */}
             </div>
           )}
-          {/* <textarea 
-            placeholder="Enter your message here..."
-            value={text}
-            id="notearea"
-            onChange={handleChange}
-            className="md-note-space outline-none resize-none overflow-hidden overflow-y-scroll"
-            style={{ height: newHeight }}
-        >
-
-        </textarea> */}
-          <Slate editor={editor} initialValue={initialValue} va>
+          <Slate editor={editor} initialValue={initialValue} >
             <Editable
               placeholder="Enter your message here..."
               renderElement={renderElement}
               renderLeaf={renderLeaf}
-              readOnly={!isEdit}
+              readOnly={isPresentMode==true?true:!isEdit}
               value={slateValue}
               style={{ fontFamily: "Verdana" }}
               className="md-note-space outline-none resize-none overflow-y-scroll"
@@ -567,24 +568,9 @@ function MarkDownComponent({ sendTextData, isEdit }) {
                 CustomEditor.handlePaste(editor, event);
               }}
             />
-          </Slate>
-          {/* <div className="flex flex-row justify-between opacity-50 hover:opacity-100">
-            <button className="px-2 py-1 bg-slate-200">Add Carousel</button>
-            <button className="px-2 py-1 bg-slate-200">Add Note</button>
-            <button className="px-2 py-1 bg-slate-200">Add Text</button>
-          </div> */}
+          </Slate> 
         </div>
       )}
-      {/* {!isEdit && (
-        <div className="flex flex-col py-4 " style={{ fontFamily: "Verdana" }}>
-          <div className="md-result outline-none resize-none">
-            <ReactMarkdown
-              className="black-disc-bullet text-justify"
-              children={text}
-            ></ReactMarkdown>
-          </div>
-        </div>
-      )} */}
     </>
   );
 }

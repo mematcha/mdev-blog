@@ -1,11 +1,31 @@
 // import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
+import API from "../apis/apiCatalog";
+import { useNavigate } from "react-router-dom";
+import { generateGoogleToken } from "../auth/authenticator";
+
 function LoginPage() {
+
+  const navigate = useNavigate();
+
   const handleCallbackResponse = (response) => {
-    console.log(response.credential);
-    let userObject = jwtDecode(response.credential);
-    console.log(userObject);
+    if(response && response.credential){
+      API.generateGoogleToken(response.credential).then((result)=>{
+        if(result && result.data){
+          const data=result.data;
+          if(data.role && data.token){
+            //means role is user
+            if(data.token=="" || data.role=="user"){
+              return;
+            }
+            else if(data.role=="admin"){
+              localStorage.getItem("accessToken",data.token)
+            }
+          }
+        }
+      });
+    }
   };
 
   useEffect(() => {
@@ -19,10 +39,11 @@ function LoginPage() {
       theme: "outline",
       size: "large",
     });
+    
   }, []);
 
   return (
-    <div className="w-[80%] flex flex-col mx-[10%]">
+    <div className="w-[80%] flex flex-col mx-[10%] h-[100vh] items-center justify-around">
       <div id="signInDiv"></div>
     </div>
   );

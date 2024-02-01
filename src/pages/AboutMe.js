@@ -4,66 +4,108 @@ import SkillCarousel from "../components/Carousel/SkillCarousel";
 import CarouselGeneral from "../components/Carousel/Carousel";
 import CarouselTemplate from "../components/Carousel/CarouselTemplate";
 import SideCard from "../components/SideCard/SideCard";
+import { useContext } from "react";
+import { ThemeContext } from "../ThemeContext";
+import ProfileImg from "../assets/profile_image.jpg";
 
 function AboutMe() {
   const openResume = () => {
     window.open(resume_pdf, "_blank");
   };
+  const { theme } = useContext(ThemeContext);
   const contactObj = [
     {
-      title:"Social",
-      courses:[
-        "LinkedIn",
-        "Twitter / X",
-      ]
+      title: "Social & Email",
+      courses: [
+        {
+          text: "LinkedIn",
+          url: "https://www.linkedin.com/in/sathwik-matcha/",
+        },
+        {
+          text: "Threads",
+          url: "https://www.threads.net/@mematcha9",
+        },
+        {
+          text: "matcha.s@northeastern.edu",
+          url: "mailto:matcha.s@northeastern.edu",
+        },
+        {
+          text: "",
+          url: "",
+        },
+      ],
     },
     {
-      title:"Developer",
-      courses:[
-        "Github",
-        "Kaggle",
-        "Leetcode"
-      ]
+      title: "Developer",
+      courses: [
+        {
+          text: "Github",
+          url: "https://github.com/mematcha",
+        },
+        {
+          text: "Kaggle",
+          url: "https://www.kaggle.com/mematcha9",
+        },
+        {
+          text: "Leetcode",
+          url: "https://leetcode.com/mematcha/",
+        },
+      ],
     },
-    {
-      title:"Mail",
-      courses:[
-        "matcha.s@northeastern.edu"
-      ]
-    }
-  ]
+  ];
   const resumeObj = [
     {
       title: "Programming Languages",
-      courses: ["Javascript", "Typescript", "Java", "Python", "R", "C++"],
+      courses: [
+        { text: "Javascript", url: "#" },
+        { text: "Typescript", url: "#" },
+        { text: "Java", url: "#" },
+        { text: "Python", url: "#" },
+        { text: "R", url: "#" },
+        { text: "C++", url: "#" },
+      ],
     },
     {
       title: "Web Technologies",
       courses: [
-        "Angular",
-        "React TS",
-        "Node.js",
-        "Express.js",
-        "Responsive Design",
-        "Progressive Web Apps (PWA)",
+        { text: "Angular", url: "#" },
+        { text: "React TS", url: "#" },
+        { text: "Node.js", url: "#" },
+        { text: "Express.js", url: "#" },
+        { text: "Responsive Design", url: "#" },
+        { text: "Progressive Web Apps (PWA)", url: "#" },
       ],
     },
-    { title: "Databases", courses: ["MongoDB", "MySQL", "Microsoft SQL Server"] },
+    {
+      title: "Databases",
+      courses: [
+        { text: "MongoDB", url: "#" },
+        { text: "MySQL", url: "#" },
+        { text: "Microsoft SQL Server", url: "#" },
+      ],
+    },
     {
       title: "Frameworks / Libraries",
       courses: [
-        "Tensorflow",
-        "Pytorch",
-        "Swing",
-        ".NET MVC",
-        "Lucene",
-        "Tailwind CSS",
-        "Chart JS",
-        "React-ag-grid",
-        "Angular Material",
+        { text: "Tensorflow", url: "#" },
+        { text: "Pytorch", url: "#" },
+        { text: "Swing", url: "#" },
+        { text: ".NET MVC", url: "#" },
+        { text: "Lucene", url: "#" },
+        { text: "Tailwind CSS", url: "#" },
+        { text: "Chart JS", url: "#" },
+        { text: "React-ag-grid", url: "#" },
+        { text: "Angular Material", url: "#" },
       ],
     },
-    { title: "Version Control", courses: ["Azure DevOps", "Git", "GitHub"] },
+    {
+      title: "Version Control",
+      courses: [
+        { text: "Azure DevOps", url: "#" },
+        { text: "Git", url: "#" },
+        { text: "GitHub", url: "#" },
+      ],
+    },
   ];
   const aboutMeArr = [
     "About Me",
@@ -87,11 +129,20 @@ function AboutMe() {
   return (
     <>
       <div className="flex flex-col items-center">
-        <div className="body-center fixed flex justify-center top-0 left-0 shadow bg-white z-10">
+        <div
+          className={`body-center fixed flex justify-center top-0 left-0 ${
+            theme == "dark" ? "dark-shadow" : "shadow"
+          } bg-white z-10`}
+        >
           <MainHeader></MainHeader>
         </div>
         <div className="flex flex-row ml-[10%] mr-[0%] text-justify">
           <div className="w-[90%] pt-24">
+            <div className="flex items-center justify-around h-24">
+              <div className="profile-circle">
+                <img src={ProfileImg} alt="Image Not Loaded"></img>
+              </div>
+            </div>
             <div className="mb-4">
               <div className="mb-4 font-bold text-[24px]">About Me</div>
               <div>
