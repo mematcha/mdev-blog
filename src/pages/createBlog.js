@@ -230,14 +230,16 @@ function CreateBlog() {
   return (
     <>
       <div className="flex flex-col">
-        <div className={`body-center flex fixed justify-center top-0 left-0 ${theme=="dark"?"dark-shadow":"shadow"} z-10`}>
+        <div
+          className={`body-center flex fixed justify-center top-0 left-0 ${
+            theme == "dark" ? "dark-shadow" : "shadow"
+          } z-10`}
+        >
           <MainHeader></MainHeader>
         </div>
         <div
           className={`flex flex-col relative left-0  mt-12 ${
-            deviceType === "mobile"
-              ? "mr-[05%] ml-[05%]"
-              : "mr-[10%] ml-[10%]"
+            deviceType === "mobile" ? "mr-[05%] ml-[05%]" : "mr-[10%] ml-[10%]"
           } text-[16px]`}
         >
           <div
@@ -258,30 +260,36 @@ function CreateBlog() {
               )}
             </div>
             <div>
-              <button
-                className="px-2 py-1 h-[40px] mr-2 border-gray-200"
-                onClick={() => {
-                  setIsEdit(true);
-                }}
-              >
-                Edit
-              </button>
-              <button
-                className="px-2  h-[40px] mr-2  border-gray-200"
-                onClick={() => {
-                  setIsEdit(false);
-                }}
-              >
-                Preview
-              </button>
-              <button
-                className="px-2 h-[40px] bg-green-900 border-gray-200"
-                onClick={() => {
-                  uploadBlogData();
-                }}
-              >
-                Publish
-              </button>
+              {!isEdit && (
+                <button
+                  className="px-2 py-1 h-[40px] mr-2 border-gray-200"
+                  onClick={() => {
+                    setIsEdit(true);
+                  }}
+                >
+                  Edit
+                </button>
+              )}
+              {isEdit && (
+                <button
+                  className="px-2  h-[40px] mr-2  border-gray-200"
+                  onClick={() => {
+                    setIsEdit(false);
+                  }}
+                >
+                  Preview
+                </button>
+              )}
+              {!isEdit && (
+                <button
+                  className="px-2 h-[40px] bg-green-900 border-gray-200 text-white"
+                  onClick={() => {
+                    uploadBlogData();
+                  }}
+                >
+                  Publish
+                </button>
+              )}
             </div>
           </div>
           <div
