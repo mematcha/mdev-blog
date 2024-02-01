@@ -9,20 +9,25 @@ import LoginPage from "./pages/loginPage";
 import OtherProjects from "./pages/OtherProjects";
 import SeriesPage from "./pages/seriesPage";
 import SeriesBlogsPage from "./pages/seriesBlogsPage";
+import Error404Page from "./pages/error404Page";
+import { getRoleAssigned } from "./auth/authenticator";
+import { useContext } from "react";
+import { DeviceContext } from "./DeviceContext";
 
 function MainPage() {
+  const {deviceType, role}=useContext(DeviceContext);
   return (
     <Routes>
-      <Route path="/" element={<HomePage></HomePage>}></Route>
-      <Route path="/page" element={<BlogPage />} />
-      <Route path="/user" element={<UserPage></UserPage>}></Route>
-      <Route path="/my-projects" element={<OtherProjects></OtherProjects>}></Route>
-      <Route path="/about-me" element={<AboutMe></AboutMe>}></Route>
-      <Route path="/series" element={<SeriesPage></SeriesPage>}></Route>
-      <Route path="/series/:series" element={<SeriesBlogsPage></SeriesBlogsPage>}></Route>
-      <Route path="/blog/:id" element={<BlogPage></BlogPage>}></Route>
-      <Route path="/create-blog" element={<CreateBlog></CreateBlog>}></Route>
-      <Route path="/login-beta" element={<LoginPage></LoginPage>}></Route>
+      <Route exact path="/" element={<HomePage></HomePage>}></Route>
+      <Route exact path="/user" element={<UserPage></UserPage>}></Route>
+      <Route exact path="/my-projects" element={<OtherProjects></OtherProjects>}></Route>
+      <Route exact path="/about-me" element={<AboutMe></AboutMe>}></Route>
+      <Route exact path="/series" element={<SeriesPage></SeriesPage>}></Route>
+      <Route exact path="/series/:series" element={<SeriesBlogsPage></SeriesBlogsPage>}></Route>
+      <Route exact path="/blog/:id" element={<BlogPage></BlogPage>}></Route>
+      <Route exact path="/create-blog" element={role=="admin"?(<CreateBlog></CreateBlog>):(<Error404Page></Error404Page>)}></Route>
+      <Route exact path="/login-beta" element={role=="admin"?(<LoginPage></LoginPage>):<Error404Page></Error404Page>}></Route>
+      <Route path="*" element={<Error404Page></Error404Page>}></Route>
     </Routes>
   );
 }

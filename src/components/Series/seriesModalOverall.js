@@ -2,9 +2,9 @@ import { useContext, useState, useRef } from "react";
 import API from "../../apis/apiCatalog";
 
 const initializeSeries = () => {
-  API.showUserSeries().then(response=>{
-    console.log(response);
-  });
+  // API.showUserSeries().then(response=>{
+  //   console.log(response);
+  // });
   const dummyArr = [
     {
       title: "Data Science Series",

@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { DeviceContext } from "../../DeviceContext";
 
 function MLCard() {
-  const deviceContextVal = useContext(DeviceContext);
+  const { deviceType, role } = useContext(DeviceContext);
   
   return (
-    <div className={`min-w-[250px] w-[30%] h-fit bg-black text-white mr-4 my-4 ${deviceContextVal!= "desktop" ? "hidden":"x"}`}>
+    <div className={`min-w-[250px] w-[30%] h-fit bg-black text-white mr-4 my-4 ${deviceType!= "desktop" ? "hidden":"x"}`}>
       <div className="border-4 border-black flex flex-col p-4">
         <span className="text-[20px] font-bold ml-2 py-2">
           Join our Mailing List

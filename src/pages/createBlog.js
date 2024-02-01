@@ -13,7 +13,7 @@ import { ThemeContext } from "../ThemeContext";
 
 function CreateBlog() {
   //#region states and constants
-  const deviceContextVal = useContext(DeviceContext);
+  const { deviceType, role } = useContext(DeviceContext);
 
   const [textData, setTextData] = useState("");
   const [isEdit, setIsEdit] = useState(true);
@@ -27,10 +27,10 @@ function CreateBlog() {
   const [blogTitle, setBlogTitle] = useState("");
   const [blogSubText, setBlogSubText] = useState("");
   const [showInfoPopup, setShowInfoPopup] = useState({
-    state:false,
-    message:""
+    state: false,
+    message: "",
   });
-  const {theme} = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   const blogMetaDataType = {
     title: "", //title of the blog
@@ -220,8 +220,8 @@ function CreateBlog() {
       console.log(blogMetaData);
       API.publishBlog(blogMetaData);
       setShowInfoPopup({
-        state:true,
-        message:"Blog Published Successfully!"
+        state: true,
+        message: "Blog Published Successfully!",
       });
       console.log("Blog Published!");
     }
@@ -230,19 +230,19 @@ function CreateBlog() {
   return (
     <>
       <div className="flex flex-col">
-        <div className="body-center flex fixed justify-center top-0 left-0 shadow z-10">
+        <div className={`body-center flex fixed justify-center top-0 left-0 ${theme=="dark"?"dark-shadow":"shadow"} z-10`}>
           <MainHeader></MainHeader>
         </div>
         <div
           className={`flex flex-col relative left-0  mt-12 ${
-            deviceContextVal === "mobile"
+            deviceType === "mobile"
               ? "mr-[05%] ml-[05%]"
               : "mr-[10%] ml-[10%]"
           } text-[16px]`}
         >
           <div
             className={`flex text-[12px] font-bold ${
-              deviceContextVal === "mobile" ? "w-[90%]" : "w-[80%]"
+              deviceType === "mobile" ? "w-[90%]" : "w-[80%]"
             } fixed z-5 py-4 flex-row justify-between`}
           >
             <div>
@@ -284,8 +284,16 @@ function CreateBlog() {
               </button>
             </div>
           </div>
-          <div className={`relative top-20 z-0 ${theme=="dark"?"bg-darkTheme":""}`}>
-            <div className={`flex justify-around align-center ${theme=="dark"?"bg-darkTheme":""}`}>
+          <div
+            className={`relative top-20 z-0 ${
+              theme == "dark" ? "bg-darkTheme" : ""
+            }`}
+          >
+            <div
+              className={`flex justify-around align-center ${
+                theme == "dark" ? "bg-darkTheme" : ""
+              }`}
+            >
               {imgSource == null ? (
                 <></>
               ) : (
@@ -296,7 +304,9 @@ function CreateBlog() {
               <h1 className="text-[36px] font-bold">
                 <input
                   placeholder="Type something"
-                  className={`w-[100%] outline-none ${theme=="dark"?"bg-darkTheme":""}`}
+                  className={`w-[100%] outline-none ${
+                    theme == "dark" ? "bg-darkTheme" : ""
+                  }`}
                   value={blogTitle}
                   onChange={(e) => {
                     handleChangeTitle(e);
@@ -314,12 +324,14 @@ function CreateBlog() {
               <h1 className="text-[16px]">
                 <textarea
                   placeholder="Write Subtext here (max character limit is 400)"
-                  className={`w-[100%] outline-none ${theme=="dark"?"bg-darkTheme":""}`}
+                  className={`w-[100%] outline-none ${
+                    theme == "dark" ? "bg-darkTheme" : ""
+                  }`}
                   value={blogSubText}
                   maxLength={400}
                   maxRows={7}
                   style={{
-                    maxHeight:"400px"
+                    maxHeight: "400px",
                   }}
                   onChange={(e) => {
                     handleChangeSubText(e);
@@ -330,13 +342,13 @@ function CreateBlog() {
                 ></textarea>
               </h1>
             )}
-            {!isEdit && (
-              <h1 className="py-4 text-[16px]">{blogSubText}</h1>
-            )}
+            {!isEdit && <h1 className="py-4 text-[16px]">{blogSubText}</h1>}
             <ul className="flex flex-row py-2 text-[12px] font-bold ">
               {blogTagsArr.map((blogTag, index) => (
                 <li
-                  className={`px-2 py-1 mx-1 rounded border-4 border-transparent ${theme=="dark"?"bg-darkTheme":"bg-slate-100 "}`}
+                  className={`px-2 py-1 mx-1 rounded border-4 border-transparent ${
+                    theme == "dark" ? "bg-darkTheme" : "bg-slate-100 "
+                  }`}
                 >
                   <div
                     ref={divRef}
@@ -377,7 +389,9 @@ function CreateBlog() {
               ))}
               <li
                 className={`px-2 py-1 rounded border-4 border-transparent  
-                ${blogTagsArr.length > 2 || isEdit == false ? "hidden" : ""} ${theme=="dark"?"bg-darkTheme":""}`}
+                ${blogTagsArr.length > 2 || isEdit == false ? "hidden" : ""} ${
+                  theme == "dark" ? "bg-darkTheme" : ""
+                }`}
                 onClick={openEditableBlogTag}
               >
                 +
@@ -386,7 +400,9 @@ function CreateBlog() {
                 className={`p-2  w-fit border-16 rounded font-verdana text-[12px] font-bold" ${
                   seriesText == "" && !isEdit ? "hidden" : ""
                 }
-                ${blogTagsArr.length == 0 && !isEdit ? "" : "ml-2"} ${theme=="dark"?"bg-darkTheme":"bg-slate-200"}`}
+                ${blogTagsArr.length == 0 && !isEdit ? "" : "ml-2"} ${
+                  theme == "dark" ? "bg-darkTheme" : "bg-slate-200"
+                }`}
               >
                 {!isEdit && <span>{seriesText}</span>}
                 {isEdit && (
@@ -405,7 +421,7 @@ function CreateBlog() {
 
         <div
           className={`${
-            deviceContextVal === "mobile" ? "mx-[05%]" : "ml-[10%] mr-[10%]"
+            deviceType === "mobile" ? "mx-[05%]" : "ml-[10%] mr-[10%]"
           } relative top-24`}
         >
           <MarkDownComponent
@@ -421,13 +437,15 @@ function CreateBlog() {
           ></MarkDownComponent>
         </div>
       </div>
-      <div>
-        <Modal
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          setImageSource={setImgSource}
-        />
-      </div>
+      {isModalOpen && (
+        <div>
+          <Modal
+            isOpen={isModalOpen}
+            onClose={closeModal}
+            setImageSource={setImgSource}
+          />
+        </div>
+      )}
       <div>
         <SeriesModal
           isOpen={isSeriesModalOpen}
@@ -443,7 +461,9 @@ function CreateBlog() {
           selected={setSeriesText}
         ></SeriesOverall>
       </div>
-      {showInfoPopup.state && <InfoPopup message={"Blog Successfully Publised"} />}
+      {showInfoPopup.state && (
+        <InfoPopup message={"Blog Successfully Publised"} />
+      )}
     </>
   );
 }

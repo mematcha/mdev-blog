@@ -180,9 +180,9 @@ function MarkDownComponent({ sendTextData, isEdit, isPresentMode,initialContent 
       case "bullet":
         return <BulletElement {...props} />;
       case "h1":
-        return <h1 {...props.attributes}>{props.children}</h1>;
+        return <h1 {...props.attributes} className="py-[10px]">{props.children}</h1>;
       case "h2":
-        return <h2 {...props.attributes}>{props.children}</h2>;
+        return <h2 {...props.attributes} className="py-[10px]">{props.children}</h2>;
       case "youtube":
         return <YoutubeElement {...props} />;
       case "twitter":

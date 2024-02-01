@@ -4,18 +4,22 @@ import SkillCarousel from "../components/Carousel/SkillCarousel";
 import CarouselGeneral from "../components/Carousel/Carousel";
 import CarouselTemplate from "../components/Carousel/CarouselTemplate";
 import SideCard from "../components/SideCard/SideCard";
+import { useContext } from "react";
+import { ThemeContext } from "../ThemeContext";
 
 function AboutMe() {
   const openResume = () => {
     window.open(resume_pdf, "_blank");
   };
+  const { theme } = useContext(ThemeContext);
   const contactObj = [
     {
       title:"Social & Email",
       courses:[
         "LinkedIn",
         "Threads",
-        "matcha.s@northeastern.edu"
+        "matcha.s@northeastern.edu",
+        ""
       ]
     },
     {
@@ -82,7 +86,7 @@ function AboutMe() {
   return (
     <>
       <div className="flex flex-col items-center">
-        <div className="body-center fixed flex justify-center top-0 left-0 shadow bg-white z-10">
+        <div className={`body-center fixed flex justify-center top-0 left-0 ${theme=="dark"?"dark-shadow":"shadow"} bg-white z-10`}>
           <MainHeader></MainHeader>
         </div>
         <div className="flex flex-row ml-[10%] mr-[0%] text-justify">

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import API from "../../apis/apiCatalog";
+import { ThemeContext } from "../../ThemeContext";
 
 function CreateSeriesModal({ isOpen, onClose }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isImgLoaded, setIsImgLoaded] = useState(false);
   const [title,setTitle]=useState("");  
+  const { theme } = useContext(ThemeContext);
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -81,7 +83,7 @@ function CreateSeriesModal({ isOpen, onClose }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
       <div className="modal-overlay fixed inset-0 bg-black opacity-50"></div>
-      <div className="modal-container bg-white p-6 rounded shadow-lg relative z-50 w-[60%] my-[24px]">
+      <div className={`modal-container ${theme=="dark"?"bg-darkTheme":"bg-white"} p-6 rounded shadow-lg relative z-50 w-[60%] my-[24px]`}>
         <button
           className="modal-close-button w-full text-24 flex justify-end"
           onClick={onClose}
@@ -103,7 +105,7 @@ function CreateSeriesModal({ isOpen, onClose }) {
             className="hidden"
           ></input>
           <div
-            className="w-full h-[300px] bg-slate-200 
+            className="w-full h-[300px]  
                             flex items-center justify-center 
                             dropzone"
             onDrag={handleDragOver}
@@ -117,7 +119,7 @@ function CreateSeriesModal({ isOpen, onClose }) {
           </div>
           <div className="w-full">
             <input
-              className="w-[100%] border-2 bg-slate-100 p-2"
+              className={`w-[100%] border-2 ${theme=="dark"?"bg-darkTheme":"bg-white"} p-2`}
               value={title}
               onChange={(e)=>{changeTitle(e);}}
               onKeyDown={(e)=>{changeTitle(e);}}
@@ -126,7 +128,7 @@ function CreateSeriesModal({ isOpen, onClose }) {
           </div>
           <div className="flex self-end p-4">
             <button
-              className={`modal-close-button w-full p-2 mr-2 border-2 text-24 ${
+              className={`modal-close-button w-full p-2 mr-2 flex items-center justify-around border-2 text-24 ${
                 isImgLoaded == true ? "" : "hidden"
               }`}
               onClick={removeImage}
@@ -134,7 +136,7 @@ function CreateSeriesModal({ isOpen, onClose }) {
               Delete
             </button>
             <button
-              className={`modal-close-button w-full p-2 border-2 text-24 `}
+              className={`modal-close-button w-full flex items-center justify-around p-2 border-2 text-24 `}
               onClick={saveImage}
             >
               Create Series

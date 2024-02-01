@@ -31,7 +31,9 @@ export const showUserBlogs = async (data) => {
 
 export const getAllBlogs = async (data) => {
   try{
-    const response = await apiClient.get("/get-blogs");
+    const response = await apiClient.get("/get-blogs", {
+      params: { query: data }
+    });
     return response.data;
   }
   catch(error){
@@ -129,8 +131,76 @@ export const showBlogById = async (data) =>{
   }
 };
 
+export const getBlogsInSeries = async (data) =>{
+  try{
+    const response = await apiClient.get(`/series-blogs/${data.series}`);
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+}
+
+export const getBlogsNotInSeries = async (data) =>{
+  try{
+    const response = await apiClient.get(`/blogs-no-series`,{ params: {query:data} });
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+};
+
+export const addBlogToSeries = async (data) => {
+  try{
+    const response = await apiClient.post(`/add-blog-to-series`,data);
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+};
+
+export const generateGoogleToken = async (data) =>{
+  try{
+    const response = await apiClient.post(`/generate-google-token`,{token:data});
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+};
+
+export const generateRefreshToken = async (data) =>{
+  try{
+    const response = await apiClient.post(`/generate-token`,{type:"refresh"});
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+};
+
+export const generateAccessToken = async (data,accessToken='') =>{
+  try{
+    const response = await apiClient.post("/generate-token",{type:"access",token:data,accessToken:accessToken});
+    return response;
+  }
+  catch(err){
+    console.error("Error : ", err);
+    throw err;
+  }
+};
+
 export default {
   showUserBlogs,
+  generateRefreshToken,
+  generateAccessToken,
   uploadImage,
   getImageBuffer,
   showUserSeries,
@@ -139,5 +209,9 @@ export default {
   createNewSeries,
   checkSeriesByName,
   getAllSeries,
-  showBlogById
+  showBlogById,
+  getBlogsInSeries,
+  getBlogsNotInSeries,
+  addBlogToSeries,
+  generateGoogleToken
 };

@@ -8,7 +8,7 @@ import MarkDownComponent from "../components/markdownComponent";
 import { ThemeContext } from "../ThemeContext";
 
 function BlogPage(props) {
-  const deviceContextVal = useContext(DeviceContext);
+  const { deviceType, role } = useContext(DeviceContext);
   const [blogData,setBlogData] = useState({});
   const [textData, setTextData] = useState("");
   const {theme} = useContext(ThemeContext);
@@ -43,7 +43,7 @@ function BlogPage(props) {
   return (
     <>
       {
-        deviceContextVal!="mobile"
+        deviceType!="mobile"
         &&
         (
           <div className="body-center fixed flex justify-center top-0 left-0 shadow bg-white z-10">
@@ -53,7 +53,7 @@ function BlogPage(props) {
       }
       <div
         className={`flex justify-center flex-col body ${
-          deviceContextVal === "mobile" ? "mx-[10%]" : "ml-[10%] mr-[10%]"
+          deviceType === "mobile" ? "mx-[10%]" : "ml-[10%] mr-[10%]"
         }`}
       >
         {/* <div>
