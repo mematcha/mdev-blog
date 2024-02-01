@@ -167,7 +167,7 @@ body{
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 5px;
 }
 
@@ -176,7 +176,14 @@ body{
   text-overflow: clip;
   text-align: center;
 }
-
+.modal-close-button{
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+}
+.dark-shadow {
+  box-shadow: 0 2px 4px rgba(151, 151, 151, 0.1), 0 4px 4px 2px rgb(70 70 70 / 20%);
+}
 // .list-menu {
 //     li {
 //         padding: 8px;
