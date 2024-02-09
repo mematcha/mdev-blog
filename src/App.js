@@ -32,7 +32,7 @@ function App() {
     }
   };
   useEffect(() => {
-    document.title = "Blog | mDev";
+    document.title = "Sathwik Matcha | Home";
     runAuthentication();
   }, []);
   const [theme, setTheme] = useState(() => {
