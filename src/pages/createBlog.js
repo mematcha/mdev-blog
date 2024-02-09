@@ -217,13 +217,11 @@ function CreateBlog() {
       }
     }
     if (allowCode == 1) {
-      console.log(blogMetaData);
       API.publishBlog(blogMetaData);
       setShowInfoPopup({
         state: true,
         message: "Blog Published Successfully!",
       });
-      console.log("Blog Published!");
     }
   };
 
@@ -248,7 +246,7 @@ function CreateBlog() {
             } fixed z-5 py-4 flex-row justify-between`}
           >
             <div>
-              {environment == "staging" && (
+              {environment == "development-togo" && (
                 <button
                   className={`px-2 py-1 mr-2 h-[40px] border-gray-200 ${
                     !isEdit ? "opacity-0" : ""
@@ -470,7 +468,7 @@ function CreateBlog() {
         ></SeriesOverall>
       </div>
       {showInfoPopup.state && (
-        <InfoPopup message={"Blog Successfully Publised"} />
+        <InfoPopup message={"Blog Successfully Published"} />
       )}
     </>
   );
