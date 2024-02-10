@@ -89,7 +89,7 @@ function OtherProjects() {
       >
         <MainHeader></MainHeader>
       </div>
-      <div className={`slider-project-status flex flex-row justify-around mb-4 p-2 fixed top-[48px] shadow w-[100%] z-5 ${theme=="dark"?"bg-darkTheme":"bg-white"}`}>
+      <div className={`slider-project-status flex flex-row justify-around mb-4 p-2 fixed top-[48px]  w-[100%] z-5 ${theme=="dark"?"bg-darkTheme dark-shadow":"bg-white shadow"}`}>
         <span className={`p-2 bg-red-500 ${activeState=="Planning"?"underline":""}`} onClick={(e)=>{activate("Planning")}}>Planning</span>
         <span className={`p-2 bg-yellow-500 ${activeState=="In Progress"?"underline":""}`} onClick={(e)=>{activate("In Progress")}}>In Progress</span>
         <span className={`p-2 bg-green-500 ${activeState=="Completed"?"underline":""}`} onClick={(e)=>{activate("Completed")}}>Completed</span>
