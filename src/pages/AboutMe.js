@@ -36,7 +36,7 @@ function AboutMe() {
       ],
     },
     {
-      title: "Developer",
+      title: "Developer Profiles",
       courses: [
         {
           text: "Github",
@@ -63,15 +63,17 @@ function AboutMe() {
         { text: "Python", url: "#" },
         { text: "R", url: "#" },
         { text: "C++", url: "#" },
+        { text: "C", url: "#" },
       ],
     },
     {
       title: "Web Technologies",
       courses: [
         { text: "Angular", url: "#" },
-        { text: "React TS", url: "#" },
+        { text: "React", url: "#" },
         { text: "Node.js", url: "#" },
         { text: "Express.js", url: "#" },
+        { text: "Nginx", url: "#" },
         { text: "Responsive Design", url: "#" },
         { text: "Progressive Web Apps (PWA)", url: "#" },
       ],
@@ -80,30 +82,49 @@ function AboutMe() {
       title: "Databases",
       courses: [
         { text: "MongoDB", url: "#" },
-        { text: "MySQL", url: "#" },
+        { text: "MySQL Server", url: "#" },
         { text: "Microsoft SQL Server", url: "#" },
       ],
     },
     {
-      title: "Frameworks / Libraries",
+      title: "Web Frameworks / Libraries",
       courses: [
-        { text: "Tensorflow", url: "#" },
-        { text: "Pytorch", url: "#" },
-        { text: "Swing", url: "#" },
-        { text: ".NET MVC", url: "#" },
-        { text: "Lucene", url: "#" },
         { text: "Tailwind CSS", url: "#" },
         { text: "Chart JS", url: "#" },
         { text: "React-ag-grid", url: "#" },
         { text: "Angular Material", url: "#" },
+        { text: "Swing", url: "#" },
+        { text: ".NET MVC", url: "#" },
+        { text: "Lucene", url: "#" },
       ],
     },
     {
-      title: "Version Control",
+      title: "Machine Learning Frameworks / Libraries",
+      courses: [
+        { text: "Tensorflow", url: "#" },
+        { text: "Pytorch", url: "#" },
+        { text: "Keras", url: "#" },
+        { text: "Numpy", url: "#" },
+        { text: "Pandas", url: "#" },
+        { text: "scikit-learn", url: "#" }
+      ],
+    },
+    {
+      title: "Cloud Services",
+      courses: [
+        { text: "AWS - S3", url: "#" },
+        { text: "AWS - EC2", url: "#" },
+        { text: "AWS - Route 53", url: "#" },
+      ],
+    },
+    {
+      title: "Version Control and Other Technologies",
       courses: [
         { text: "Azure DevOps", url: "#" },
         { text: "Git", url: "#" },
         { text: "GitHub", url: "#" },
+        { text: "Linux", url: "#" },
+        { text: "Slurm", url: "#" },
       ],
     },
   ];
@@ -169,15 +190,18 @@ function AboutMe() {
               </div>
             </div>
             <div className="mb-4">
-              <div className="mb-4 font-bold text-[24px]">Why MDev.Blog?</div>
+              <div className="mb-4 font-bold text-[24px]">Why this blog?</div>
               <div>
                 <p>
                   The main mission of this blog is to be a proper presentation
                   of knowledge rather than a simple mumble jumble of the latest
-                  happenings in a space. The gap between what we want to learn
-                  and what is being presented has no correlation in the modern
-                  social media space. I hope this website bridges the gap
-                  between the two.
+                  happenings in today's world of software development and
+                  machine learning. I believe an organized notes, which can be
+                  understood by others (taking inspiration from the Feynman
+                  Principle) would help me understand these concepts more
+                  clearly than ever before. I hope this attempt not only helps
+                  me but also others in this arduous, but enthralling journey
+                  into development.
                 </p>
                 <br></br>
                 <p>
@@ -185,7 +209,7 @@ function AboutMe() {
                   while I do intend to post the latest happenings, I wish to
                   keep it distinct from the actual learning aspects. My focus
                   areas revolve around Software Development, Machine Learning
-                  and Data Science.
+                  and Data Science. 
                 </p>
               </div>
             </div>
