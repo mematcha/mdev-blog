@@ -19,7 +19,7 @@ function MainSearch({query}) {
   return (
     //Main Header Class
     <div
-      className={`text-3xl h-12 my-12 fixed w-[80%]
+      className={`text-3xl h-12 
       flex items-center justify-between
        ${theme=="dark"?"bg-slate-200 text-black":"bg-slate-100 "}`}
     >

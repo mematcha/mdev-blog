@@ -44,10 +44,12 @@ function HomePage() {
       >
         {
           true && (
-            <MainSearch query={setQueryInp}></MainSearch>
+            <div className="bg-white h-36 py-12 z-5 fixed w-[80%]">
+              <MainSearch query={setQueryInp}></MainSearch>
+            </div>
           )
         }
-        <div className="pb-[60px] pt-32 flex flex-row">
+        <div className="pb-[60px] pt-36 flex flex-col">
           {/* <MLCard></MLCard> */}
           <div>
             {blogsArray.map((blog,index)=>(
