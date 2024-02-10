@@ -43,7 +43,7 @@ function HomePage() {
         }`}
       >
         {
-          environment == "development" && (
+          true && (
             <MainSearch query={setQueryInp}></MainSearch>
           )
         }
