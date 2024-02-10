@@ -16,7 +16,7 @@ function CarouselTemplate({ data }) {
       <div>
         <div className="grid-container">
           {data.courses.map((point, index) => (
-            <div className="grid-item">
+            <div key={"c"+index} className="grid-item">
               <a href={point.url} target="_blank">{point.text}</a>
             </div>
           ))}
