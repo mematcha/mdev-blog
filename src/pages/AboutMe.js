@@ -124,8 +124,8 @@ function AboutMe() {
         </div>
         <div className="flex flex-row ml-[10%] mr-[0%] text-justify">
           <div className="w-[90%] pt-24">
-            <div className="flex items-center justify-around h-24">
-              <div className="profile-circle">
+            <div className="flex items-center justify-around h-36">
+              <div className="profile-circle mb-[20px]">
                 <img src={ProfileImg} alt="Image Not Loaded"></img>
               </div>
             </div>
