@@ -48,7 +48,7 @@ function SeriesBlogsPage() {
         >
           {seriesTitle}
         </div>
-        {process.env.REACT_APP_ENV != "production" ? (
+        {true ? (
           <div
             className={`fixed w-[80%] p-2 z-5 mt-12 text-center ${
               theme == "dark" ? "bg-darkTheme" : "bg-white"
