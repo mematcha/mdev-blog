@@ -147,18 +147,24 @@ function AboutMe() {
               <div className="mb-4 font-bold text-[24px]">About Me</div>
               <div>
                 <p>
-                  Hi! Sathwik Matcha over here. You can call me just Sathwik. 😊
+                  Hi! Sathwik Matcha over here. You can just call me just
+                  Sathwik. 😊
                 </p>
                 <br></br>
                 <p>
-                  I am a Machine Learning Enthusiast with a knack for Software
-                  Development, with an extensive knowledge of Frontend
-                  Development ranging from React to Angular with over two years
-                  of professional background, handling large-scale web projects
-                  used by thousands of daily active customers using Angular and
-                  React in Agile work settings. Proven ability to build
-                  platforms while maintaining high standards for code efficiency
-                  and quality.
+                  As a seasoned professional in Frontend Development and
+                  Software Engineering with over two years of experience, I
+                  specialize in crafting cutting-edge web applications using
+                  frameworks like React and Angular. I excel in managing
+                  large-scale projects in Agile environments, ensuring high
+                  standards of code efficiency and quality. Additionally, I've
+                  pursued coursework in Data Science, Parallel Computing, and
+                  Deep Learning at Northeastern, enabling me to tackle complex
+                  data analysis and implement advanced AI solutions. My
+                  expertise lies at the intersection of frontend development,
+                  software engineering, and data science, allowing me to drive
+                  innovation and create impactful solutions in today's rapidly
+                  evolving technological landscape.
                 </p>
               </div>
             </div>
@@ -220,13 +226,6 @@ function AboutMe() {
                 ></CarouselGeneral>
               </div>
             </div>
-            {/* <div>
-              <div className="mb-4 font-bold text-[24px]">Contact</div>
-              <div className="">Email</div>
-              <div>LinkedIn</div>
-              <div>Github</div>
-              <div>Kaggle</div>
-            </div> */}
           </div>
         </div>
       </div>
