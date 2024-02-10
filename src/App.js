@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, createContext } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.scss";
 import { DeviceContext, DeviceProvider } from "./DeviceContext";
 
@@ -14,6 +14,8 @@ import {blogCookieExists, generateRefreshToken, generateAccessToken, getRoleAssi
 // import socialCard from './components/'
 
 function App() {
+  const navigate = useNavigate();
+
   const runAuthentication = ()=>{
     const cookieChecker = blogCookieExists();
     if(!cookieChecker.state){
@@ -24,6 +26,7 @@ function App() {
       //generate access token if it is empty, null or undefined
       if(accessToken=='' || accessToken==null || accessToken==undefined){
         generateAccessToken(cookieChecker.cookie);
+        navigate('/login-beta');
       }
       else{
         generateAccessToken(cookieChecker.cookie,accessToken);
