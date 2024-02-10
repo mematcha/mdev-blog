@@ -27,11 +27,11 @@ function MainHeader() {
       </Link>
       <div className="flex font-bold flex-row text-[12px] items-center">
         <DisplayToggle></DisplayToggle>
-        {environment == "staging" && (
+        {/* {environment == "development-togo" && (
           <Link to="/user">
             <span className="px-2">User</span>
           </Link>
-        )}
+        )} */}
         <Link to="/series">
           <span className="px-2 cursor-not-allowed pointer-events-none">
             Series
