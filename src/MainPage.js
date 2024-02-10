@@ -1,7 +1,7 @@
 import HomePage from "./pages/homePage";
 import BlogPage from "./pages/blogPage";
 import UserPage from "./pages/userPage";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import CarouselGeneral from "./components/Carousel/Carousel";
 import CreateBlog from "./pages/createBlog";
 import AboutMe from "./pages/AboutMe";
@@ -11,11 +11,13 @@ import SeriesPage from "./pages/seriesPage";
 import SeriesBlogsPage from "./pages/seriesBlogsPage";
 import Error404Page from "./pages/error404Page";
 import { getRoleAssigned } from "./auth/authenticator";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DeviceContext } from "./DeviceContext";
+import API from "./apis/apiCatalog";
 
 function MainPage() {
   const {deviceType, role}=useContext(DeviceContext);
+
   return (
     <Routes>
       <Route exact path="/" element={<HomePage></HomePage>}></Route>
@@ -25,8 +27,8 @@ function MainPage() {
       <Route exact path="/series" element={<SeriesPage></SeriesPage>}></Route>
       <Route exact path="/series/:series" element={<SeriesBlogsPage></SeriesBlogsPage>}></Route>
       <Route exact path="/blog/:id" element={<BlogPage></BlogPage>}></Route>
-      <Route exact path="/create-blog" element={role=="admin"?(<CreateBlog></CreateBlog>):(<Error404Page></Error404Page>)}></Route>
-      <Route exact path="/login-beta" element={role=="admin"?(<LoginPage></LoginPage>):<Error404Page></Error404Page>}></Route>
+      <Route exact path="/create-blog" element={<CreateBlog></CreateBlog>}></Route>
+      <Route exact path="/login-beta" element={<LoginPage></LoginPage>}></Route>
       <Route path="*" element={<Error404Page></Error404Page>}></Route>
     </Routes>
   );
