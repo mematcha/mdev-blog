@@ -82,7 +82,7 @@ function MarkDownComponent({ sendTextData, isEdit, isPresentMode,initialContent 
     return (
       <div className="flex flex-row justify-center w-[100%]">
         <img style={{
-          width:"200px"
+          width:"60%"
         }} {...props.attributes} src={props.element.url} alt="Image Not Loaded"></img>
         <div className="hidden">{props.children}</div>
       </div>
