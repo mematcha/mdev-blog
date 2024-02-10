@@ -5,12 +5,10 @@ import CreateSeriesModal from "../components/Series/createSeriesModal";
 import SeriesBlogsPage from "./seriesBlogsPage";
 import { ThemeContext } from "../ThemeContext";
 import { useNavigate } from 'react-router-dom';
-import { getRoleAssigned } from "../auth/authenticator";
 
 function SeriesPage() {
   const [isCreateSeriesModalOpen, setisCreateSeriesModalOpen] = useState(false);
   const [seriesArray, setSeriesArray] = useState([]);
-  const role = useRef(getRoleAssigned());
   const {theme} = useContext(ThemeContext);
   
   const navigate = useNavigate();
@@ -18,12 +16,12 @@ function SeriesPage() {
   useEffect(() => {
     getAllSeries();
   }, []);
-  const openSeriesPage = (path_id)=>{
-    navigate('/series/'+path_id)
+  const openSeriesPage = (path_id) => {
+    navigate("/series/" + path_id);
   };
 
   const getAllSeries = async () => {
-    API.getAllSeries().then((result)=>{
+    API.getAllSeries().then((result) => {
       setSeriesArray(result.data);
     });
   };
@@ -36,9 +34,6 @@ function SeriesPage() {
     setisCreateSeriesModalOpen(false);
   };
 
-  const AddBlogToSeries=()=>{
-    console.log("Add Blog To Series");
-  };
 
   return (
     <>
@@ -50,7 +45,10 @@ function SeriesPage() {
         <MainHeader></MainHeader>
       </div>
       {seriesArray.length == 0 && (
-        <div key={"no-series"} className="pt-20 ml-[10%] mr-[10%] flex flex-col align-center justify-center text-center h-[100vh]">
+        <div
+          key={"no-series"}
+          className="pt-20 ml-[10%] mr-[10%] flex flex-col align-center justify-center text-center h-[100vh]"
+        >
           <span className="font-bold p-8 text-[24px]">
             No Series Notes Available Currently 😔
           </span>
@@ -63,7 +61,7 @@ function SeriesPage() {
         </div>
       )}
       <div className="grid-container ml-[10%] mr-[10%] pt-20">
-        {seriesArray.length > 0 && role.current == "admin" && (
+        {seriesArray.length > 0 && (
           <div className="transition flex items-center justify-around">
             <span
               className="p-4 bg-green-500 hover:scale-105 duration-300"
