@@ -1,6 +1,6 @@
 import axios from "axios"; // Correct import
 const apiClient = axios.create({
-  baseURL: "http://localhost:4000", // Set your base URL here
+  baseURL: process.env.REACT_APP_BASE_API_URL, // Set your base URL here
 });
 
 const convertToBase64 = async(file) => {
