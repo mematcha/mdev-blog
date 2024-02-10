@@ -4,7 +4,7 @@ import SkillCarousel from "../components/Carousel/SkillCarousel";
 import CarouselGeneral from "../components/Carousel/Carousel";
 import CarouselTemplate from "../components/Carousel/CarouselTemplate";
 import SideCard from "../components/SideCard/SideCard";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ThemeContext } from "../ThemeContext";
 import ProfileImg from "../assets/profile_image.jpg";
 
@@ -107,24 +107,10 @@ function AboutMe() {
       ],
     },
   ];
-  const aboutMeArr = [
-    "About Me",
-    "Technical Skills",
-    "Why MDev.Blog?",
-    "Resume",
-  ];
 
-  const openLink = (link) => {
-    if (link == "linkedin") {
-      window.open("https://www.linkedin.com/in/sathwik-matcha/", "_blank");
-    }
-    if (link == "github") {
-      window.open("https://github.com/mematcha", "_blank");
-    }
-    if (link == "kaggle") {
-      window.open("https://www.kaggle.com/mematcha", "_blank");
-    }
-  };
+  useEffect(()=>{
+    document.title = "Sathwik Matcha | About Me";
+  },[]);
 
   return (
     <>
