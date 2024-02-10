@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import API from "../apis/apiCatalog";
 import { useNavigate } from "react-router-dom";
-import { generateGoogleToken } from "../auth/authenticator";
+// import { generateGoogleToken } from "../auth/authenticator";
 
 function LoginPage() {
 
@@ -20,7 +20,8 @@ function LoginPage() {
               return;
             }
             else if(data.role=="admin"){
-              localStorage.getItem("accessToken",data.token)
+              localStorage.setItem("accessToken",data.token)
+              navigate('/');
             }
           }
         }
