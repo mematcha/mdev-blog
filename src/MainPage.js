@@ -19,7 +19,7 @@ function MainPage() {
   return (
     <Routes>
       <Route exact path="/" element={<HomePage></HomePage>}></Route>
-      <Route exact path="/user" element={<UserPage></UserPage>}></Route>
+      {/* <Route exact path="/user" element={<UserPage></UserPage>}></Route> */}
       <Route exact path="/my-projects" element={<OtherProjects></OtherProjects>}></Route>
       <Route exact path="/about-me" element={<AboutMe></AboutMe>}></Route>
       <Route exact path="/series" element={<SeriesPage></SeriesPage>}></Route>
