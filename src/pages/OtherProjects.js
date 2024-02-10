@@ -67,7 +67,7 @@ function OtherProjects() {
   const { deviceType, role } = useContext(DeviceContext);
   const [activeState, setActiveState]=useState("");
   useEffect(() => {
-    document.title = "My Projects | mDev";
+    document.title = "Sathwik Matcha | Projects";
   }, []);
 
   const [projectsList, setProjectsList] = useState(PROJECTS_LIST);

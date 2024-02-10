@@ -14,6 +14,7 @@ function SeriesPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    document.title = "Series | Sathwik Matcha";
     getAllSeries();
   }, []);
   const openSeriesPage = (path_id) => {
