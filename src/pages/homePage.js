@@ -44,7 +44,7 @@ function HomePage() {
       >
         {
           true && (
-            <div className="bg-white h-36 py-12 z-5 fixed w-[80%]">
+            <div className={`h-36 py-12 z-5 fixed w-[80%] ${theme=="dark"?"bg-darkTheme":"bg-white"}`}>
               <MainSearch query={setQueryInp}></MainSearch>
             </div>
           )

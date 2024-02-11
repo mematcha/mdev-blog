@@ -15,27 +15,27 @@ const PROJECTS_LIST = [
     title: "Amazon Reviews Dataset Analysis",
     description:
       "An Web Application focused on providing real-time updates on sports with historical stats and match predictions.",
-    url: "https://github.com/mematcha/nfl-updates-app",
+    url: "https://github.com/mematcha/amazon-reviews-dataset-analysis",
     status: "Completed",
   },
+  // {
+  //   title: "Weather Forecast Analysis",
+  //   description:
+  //     "An Web Application focused on providing real-time updates on sports with historical stats and match predictions.",
+  //   url: "https://github.com/mematcha/nfl-updates-app",
+  //   status: "Completed",
+  // },
+  // {
+  //   title: "Parallel Program Implementation",
+  //   description:
+  //     "An Web Application focused on providing real-time updates on sports with historical stats and match predictions.",
+  //   url: "https://github.com/mematcha/nfl-updates-app",
+  //   status: "In Progress",
+  // },
   {
-    title: "Weather Forecast Analysis",
+    title: "Machine Learning Model for Task based language learning",
     description:
-      "An Web Application focused on providing real-time updates on sports with historical stats and match predictions.",
-    url: "https://github.com/mematcha/nfl-updates-app",
-    status: "Completed",
-  },
-  {
-    title: "Parallel Program Implementation",
-    description:
-      "An Web Application focused on providing real-time updates on sports with historical stats and match predictions.",
-    url: "https://github.com/mematcha/nfl-updates-app",
-    status: "Completed",
-  },
-  {
-    title: "Basá App",
-    description:
-      "An Mobile App developed in React-Native for iOS and Android focus on providing a learning experience based on users learning abilities and skillsets, by utilizing Machine Learning algorithms",
+      "A Generative Text and Prompt Model for task based language learning based on users abilities and interests.",
     url: "https://github.com/mematcha/basa-app",
     status: "In Progress",
   },
@@ -44,20 +44,20 @@ const PROJECTS_LIST = [
     description:
       "An Web Application focused on providing real-time updates on sports with historical stats and match predictions.",
     url: "https://github.com/mematcha/nfl-updates-app",
-    status: "Planning",
+    status: "In Progress",
   },
   {
     title: "Neosheets",
     description:
       "An Web Application for data scientists and analysts to create smart tables for accurate analysis and smoother presentation using AI",
-    url: "https://github.com/mematcha/nfl-updates-app",
-    status: "In Progress",
+    url: "#",
+    status: "Planning",
   },
   {
     title: "Diya",
     description:
       "A platform for UX/UI Designers and Developers to interact, integrate and build applications at ease using AI tools with guidelines on coding standards, color and UX theory.  ",
-    url: "https://github.com/mematcha/nfl-updates-app",
+    url: "#",
     status: "Planning",
   },
 ];
