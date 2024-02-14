@@ -14,7 +14,7 @@ const PROJECTS_LIST = [
   {
     title: "Amazon Reviews Dataset Analysis",
     description:
-      "An Web Application focused on providing real-time updates on sports with historical stats and match predictions.",
+      "A Scientific Analysis of Data Containing thousands of mixed reviews of different products in the 'Beauty' category on the Amazon.com website, implemented for classification using Exploratory Data Analysis",
     url: "https://github.com/mematcha/amazon-reviews-dataset-analysis",
     status: "Completed",
   },
